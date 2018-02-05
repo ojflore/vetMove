@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<script src="jquery-3.3.1.min.js"></script>
+<title>vetMove</title>
+</head>
+
+  <body>
+    <center>
+    <img src="VetMove.png" alt="VetMove Logo">
+      <div class="ctn">
+      <ul class="nav">
+        <li>Trucks and Trailers</li>
+        <li>PODS/U-BOX</li>
+        <li>Movers</li>
+        <li>Moving Calculator</li>
+      </ul>
+    </center>
+
+    <!-- <form input type="text"> Date Requested</form> -->
+    <form>
+      Moving From:<br>
+      <input type="text" name="movingfrom"><br>
+      Moving To:<br>
+      <input type="text" name="movingto">
+    </form>
+
+      <p>Date Needed: <br>
+        <input type="text" id="calendar"/>
+      </p>
+
+    </div>
+    <div>
+      <button id="button">Submit</button>
+    </div>
+
+    <script>
+    var formRequest = {
+    name: "Joe Sixpack",
+    from: {
+      street: "...",
+      zip: "...",
+      state: "..."
+    },
+    to: {
+      street: "...",
+      zip: "...",
+      state: "..."
+    },
+    square_footage: 232
+    };
+
+    var formResponseSuccess = {
+    success: true,
+    message: "Request received.",
+    distance: 340,
+    options: [
+      {
+        moving_company: "Uhaul",
+        cost: 345
+      },
+      {
+        moving_company: "Uhaul",
+        cost: 345
+      }
+    ]
+    };
+
+    var formResponseFailure = {
+    success: false,
+    message: "Unknown from address."
+    };
+
+    function postForm(formRequest, cb) {
+    setTimeout(function() {
+      cb(Math.random() < 0.5 ? formResponseSuccess : formResponseFailure);
+    }, 0);
+    }
+
+    $(function() {
+    $("#button").click(function() {
+      postForm(formRequest, function(response) {
+        if (response.success) {
+          console.log("successful");
+        }
+        else {
+          console.log("failed");
+        }
+      });
+    })
+    });
+
+    $(function() {
+      $( "#calendar" ).datepicker();
+    });
+
+    </script>
+
+    <div class="footer">
+      <img src="MilCrests.gif" alt="Crest" width="80" height="80">
+      <p>Created for Veteran's by Veterans</p>
+    <p><a href="mailto:vetmove@pointpark.edu?Subject=Information" target="_top">Contact Us</a> <a href="about.html">About Us</a></p>
+    </div>
+
+
+    </body>
+  </html>
