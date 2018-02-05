@@ -3,31 +3,16 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="style.css"/>
+<link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet">
 <script src="jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <title>vetMove</title>
-<!-- <script>
-
-  $(document).ready(function(){
-      $('#date').datepicker();
-  });
-
-  $('#date').focus(function(){
-      $('#date').datepicker('show');
-  });
-
-  $('#date').click(function(){
-      $('#date').datepicker('show');
-  });
-  //$('#ui-datepicker-div').show();
-  $('#date').datepicker('show');
-  });
-</script> -->
 </head>
   <body>
-    <div class="ctn">
+    <!-- <div class="ctn"> -->
       <div class="header">
         <img class="emblem" src="emblems.jpg"/>
         <img class=logo src="logo.png">
@@ -42,11 +27,10 @@
             <!-- <ul>City: <input type="text" id="old-city"><br></ul> -->
             <!-- <ul>State: <input type="text" id="old-city"><br></ul> -->
             <!-- <ul>Zip: <input type="text" id="old-city"><br></ul> -->
-            <button type="reset" class="reset">Reset</button>
+            <button type="button" class="reset">Reset</button>
             <button type="button" class="save">Save</button>
           </form>
         </div>
-      </div>
 
         <div class="center-box">
           <form class="dest">
@@ -74,36 +58,40 @@
                 <option>5+ bdrms</option>
               </select><br>
             <label class="sqft">Square Footage: </label><input type="text" id="sqft"><br>
-            <label class="sqft">Date Requested: </label><input type="text" id="date"><br>
             <button type="reset" class="reset">Reset</button>
             <button type="button" class="save">Save</button>
           </p>
           </form>
         </div>
+      <div class="datepicker">Date Requested:  <input type="text" id="datepicker"></div>
+
+      <div class="sub-button"><button type="submit" class="submit">Submit Request</button></div>
+
+      <div class="footer">
+        <img src="MilCrests.gif" alt="Crest" width="80" height="80">
+        <q>Created for Veteran's by Veteran's</q>
+        <p>
+        <a href="mailto:vetmove@pointpark.edu?Subject=Information" target="_top">Contact Us</a>
+        <a href="about.html">About Us</a>
+        </p>
+      </div>
     </div>
-
-    <button type="submit" class="submit">Submit Request</button>
-
-    <div class="footer">
-      <img src="MilCrests.gif" alt="Crest" width="80" height="80">
-      <q>Created for Veteran's by Veteran's</q>
-      <p>
-      <a href="mailto:vetmove@pointpark.edu?Subject=Information" target="_top">Contact Us</a>
-      <a href="about.html">About Us</a>
-      </p>
-    </div>
-
-
-
-    <!-- <select id="dropdown">Select
-      <option>option 1</option>
-      <option>option 2</option>
-      <option>option 3</option>
-      <option>option 4</option>
-    </select> -->
-
+  <!-- </div> -->
 
     <script>
+
+    $( function() {
+      $( "#datepicker" ).datepicker({
+        orientation: 'bottom'
+      });
+    });
+
+    </script>
+  </body>
+</html>
+
+
+
 
 
   <!-- // var original = null;
@@ -175,12 +163,6 @@
   // $(document).ready(function(){
   //     $('#date').datepicker();
 
-  // $("#date").click(function) {
-  //   $("#date")[0].datepicker();
-  // });
-
-
-
-  </script>
-  </body>
-</html>
+  $("#date").click(function) {
+    $("#date")[0].datepicker();
+  });
