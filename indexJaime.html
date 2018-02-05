@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<script src="jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<title>vetMove</title>
+<!-- <script>
+
+  $(document).ready(function(){
+      $('#date').datepicker();
+  });
+
+  $('#date').focus(function(){
+      $('#date').datepicker('show');
+  });
+
+  $('#date').click(function(){
+      $('#date').datepicker('show');
+  });
+  //$('#ui-datepicker-div').show();
+  $('#date').datepicker('show');
+  });
+</script> -->
+</head>
+  <body>
+    <div class="ctn">
+      <div class="header">
+        <img class="emblem" src="emblems.png"/>
+        <img class=logo src="VetMove.png">
+      </div>
+      <div class="landing">
+
+        <div class="left-box">
+          <form class="origin">
+            <p class="org-text">Origin</p>
+            <input type="text" id="old-city"><br>
+            <p class="description">Zip Code or City, State</p>
+            <!-- <ul>City: <input type="text" id="old-city"><br></ul> -->
+            <!-- <ul>State: <input type="text" id="old-city"><br></ul> -->
+            <!-- <ul>Zip: <input type="text" id="old-city"><br></ul> -->
+            <button type="reset" class="reset">Reset</button>
+            <button type="button" class="save">Save</button>
+          </form>
+        </div>
+      </div>
+
+        <div class="center-box">
+          <form class="dest">
+            <p>Destination</p>
+            <input type="text" id="new-city">
+            <p class="description">Zip Code or City, State</p>
+            <!-- <ul>State: <input type="text" id="new-state"><br></ul>
+            <ul>Zip: <input type="text" id="new-zip"><br></ul> -->
+            <button type="reset" class="reset">Reset</button>
+            <button type="button" class="save">Save</button>
+          </form>
+        </div>
+
+        <div class="right-box">
+          <form class="details">
+            <p class="det-header">Details</p>
+            <p class="det-text">
+
+            <label class="sqft">Square Footage: </label><input type="text" id="sqft"><br>
+            <label class="sqft">Date Requested: </label><input type="text" id="date"><br>
+            <button type="reset" class="reset">Reset</button>
+            <button type="button" class="save">Save</button>
+          </p>
+          </form>
+        </div>
+    </div>
+
+<!--This button will commit everything to database-->
+    <button type="submit" class="submit" onclick="">Submit Request</button>
+
+    <div class="footer">
+
+      <q>Created for Veterans by Veterans</q>
+      <p>
+      <a href="mailto:vetmove@pointpark.edu?Subject=Information" target="_top">Contact Us</a>
+      <a href="about.html">About Us</a>
+      </p>
+    </div>
+
+
+
+    <!-- <select id="dropdown">Select
+      <option>option 1</option>
+      <option>option 2</option>
+      <option>option 3</option>
+      <option>option 4</option>
+    </select> -->
+
+
+    <script>
+
+
+  <!-- // var original = null;
+  // $("dropdown").change(function()) {
+  //   if (original === null) {
+  //     original = $(document.body).css("color");
+  //   }
+  //   var value = $(this).val();
+  //   console.log(value);
+  //   $(document.body).css("background-image", value);
+  //   // $("#dropdown").append("<option>New Option</option>"); adds new option to dropdown
+  // } -->
+
+  <!-- var formRequest = {
+  name: "Joe Sixpack",
+  from: {
+    street: "...",
+    zip: "...",
+    state: "..."
+  },
+  to: {
+    street: "...",
+    zip: "...",
+    state: "..."
+  },
+  square_footage: 232
+  };
+
+  var formResponseSuccess = {
+  success: true,
+  message: "Request received.",
+  distance: 340,
+  options: [
+    {
+      moving_company: "Uhaul",
+      cost: 345
+    },
+    {
+      moving_company: "Uhaul",
+      cost: 345
+    }
+  ]
+  };
+
+  var formResponseFailure = {
+  success: false,
+  message: "Unknown from address."
+  };
+
+  function postForm(formRequest, cb) {
+  setTimeout(function() {
+    cb(Math.random() < 0.5 ? formResponseSuccess : formResponseFailure);
+  }, 0);
+  }
+
+  $(function() {
+  $("#button").click(function() {
+    postForm(formRequest, function(response) {
+      if (response.success) {
+        console.log("successful");
+      }
+      else {
+        console.log("failed");
+      }
+    });
+  })
+  });
+
+  // $(document).ready(function(){
+  //     $('#date').datepicker();
+
+  // $("#date").click(function) {
+  //   $("#date")[0].datepicker();
+  // });
+
+
+
+  </script>
+  </body>
+</html>
