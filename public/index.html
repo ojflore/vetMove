@@ -13,22 +13,19 @@
 </head>
   <body>
     <!-- <div class="ctn"> -->
-      <div class="header">
-        <img class="emblem" src="emblems.jpg"/>
-        <img class=logo src="logo.png">
-      </div>
       <div class="landing">
-
+        <div class="header">
+          <img class="emblem" src="emblems.png"/>
+          <img class="logo" src="VetMove.png"/>
+        </div>
         <div class="left-box">
           <form class="origin">
             <p class="org-text">Origin</p>
             <input type="text" id="old-city"><br>
-            <p class="description">Zip Code or City, State</p>
+            <p class="description">Zip Code</p>
             <!-- <ul>City: <input type="text" id="old-city"><br></ul> -->
             <!-- <ul>State: <input type="text" id="old-city"><br></ul> -->
             <!-- <ul>Zip: <input type="text" id="old-city"><br></ul> -->
-            <button type="button" class="reset">Reset</button>
-            <button type="button" class="save">Save</button>
           </form>
         </div>
 
@@ -36,11 +33,9 @@
           <form class="dest">
             <p>Destination</p>
             <input type="text" id="new-city">
-            <p class="description">Zip Code or City, State</p>
+            <p class="description">Zip Code</p>
             <!-- <ul>State: <input type="text" id="new-state"><br></ul>
             <ul>Zip: <input type="text" id="new-zip"><br></ul> -->
-            <button type="reset" class="reset">Reset</button>
-            <button type="button" class="save">Save</button>
           </form>
         </div>
 
@@ -58,17 +53,13 @@
                 <option>5+ bdrms</option>
               </select><br>
             <label class="sqft">Square Footage: </label><input type="text" id="sqft"><br>
-            <button type="reset" class="reset">Reset</button>
-            <button type="button" class="save">Save</button>
-          </p>
+            <label class="datepicker">Date Requested: </label><input type="text" id="datepicker">
+            </p>
           </form>
         </div>
-      <div class="datepicker">Date Requested:  <input type="text" id="datepicker"></div>
-
-      <div class="sub-button"><button type="submit" class="submit">Submit Request</button></div>
+      <label class="sub-button"><button type="submit" class="submit">Submit Request</button></label>
 
       <div class="footer">
-        <img src="MilCrests.gif" alt="Crest" width="80" height="80">
         <q>Created for Veteran's by Veteran's</q>
         <p>
         <a href="mailto:vetmove@pointpark.edu?Subject=Information" target="_top">Contact Us</a>
