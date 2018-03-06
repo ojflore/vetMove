@@ -4,6 +4,7 @@ var mysql = require("mysql");
 var credentials = require("./credentials");
 var qs = require("querystring");
 
+//add users
 http.createServer(function(req, res) {
   try {
     var path = req.url.replace(/\/?(?:\?.*)?$/, "").toLowerCase();
@@ -197,8 +198,9 @@ function addMoveRequest(req, res) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      conn.query("INSERT INTO MoveRequest (FromZip) VALUE (?)", [injson.FromZip], function(err, rows, fields) {
-        console.log(JSON.stringify(rows));
+      conn.query("INSERT INTO MoveRequest (FromZip,ToZip,NumberOfPeople,SquareFootage,NumberOfRooms,Distance,MoverID) VALUE (?,?,?,?,?,?,?)", [injson.FromZip, injson.ToZip, injson.NumberOfPeople, injson.SquareFootage, injson.NumberOfRooms, injson.Distance, injson.MoverID], function(err, rows, fields) {
+        console.log(JSON.stringify(rows.insertId));
+
         // build json result object
         var outjson = {};
         if (err) {
@@ -210,6 +212,8 @@ function addMoveRequest(req, res) {
           // query successful
           outjson.success = true;
           outjson.message = "Query successful!";
+          outjson.id = rows.insertId;
+
         }
         // return json object that contains the result of the query
         sendResponse(req, res, outjson);
@@ -218,5 +222,6 @@ function addMoveRequest(req, res) {
     });
   });
 }
+
 
 console.log("Server started on localhost: 3000; press Ctrl-C to terminate....");
