@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="style.css"/>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -39,14 +40,20 @@
            console.log(JSON.stringify(json));
            console.log(json.data[0].FromZip);
            console.log(json.data[0].ToZip);
-           console.log(json.data[0].NumberOfPeople);
+      //THANK YOU!!!//
            $("#npeople").val(json.data[0].NumberOfPeople);
+           $("#sqfoot").val(json.data[0].SquareFootage);
+           $("#nroom").val(json.data[0].NumberOfRooms);
+           $("#mover").val(json.data[0].MoverID);
 
              var directionsDisplay = new google.maps.DirectionsRenderer;
              var directionsService = new google.maps.DirectionsService;
              var map = new google.maps.Map(document.getElementById('map'),);
+             var trafficLayer = new google.maps.TrafficLayer();
 
+             trafficLayer.setMap(map);
              directionsDisplay.setMap(map);
+             directionsDisplay.setPanel(document.getElementById('right-panel'));
 
              calculateAndDisplayRoute(directionsService, directionsDisplay, ""+json.data[0].FromZip, ""+json.data[0].ToZip );
              document.getElementById('mode')
@@ -66,17 +73,16 @@
   </head>
   <body>
     <header>
-    <img class=logo src="logo.gif" alt="Final Confirmation">
-    </header> <br>
-<!--Need help on passing information into to these inputs from database -->
+    <img class=logo src="VetMove0.png" alt="Final Confirmation">
 
+    </header>
 <div id="panel">
   <div id="floating-panel">
-  <input id="mode" type="hidden" value="DRIVING">Your Travel Confirmation</input><br><br>
-  Number of People:<input id="npeople"></input><br>
-  Number of rooms : <input id="nroom"></input><br>
-  Square Footage : <input id="sqfoot"></input><br>
-  Mover ID : <input id="mover"></input><br>
+  <input id="mode" type="hidden" value="DRIVING">Your Move Confirmation</input><br>
+  Number of People:<input id="npeople" size="5"></input>
+  Number of rooms : <input id="nroom" size="5"></input>
+  Square Footage : <input id="sqfoot" size="6"></input>
+  Moving Company : <input id="mover" size="6"></input><br>
   <button onclick="printpage()">Print this page</button>
 
   <script>
@@ -84,12 +90,12 @@
       window.print();
   }
   </script>
-
   </div>
 </div>
-
+<div id="right-panel"></div>
 
     <div id="map"></div>
+
     <script>
 
 
@@ -97,7 +103,7 @@
       function calculateAndDisplayRoute(directionsService, directionsDisplay, origin,destination) {
         var selectedMode = document.getElementById('mode').value;
         directionsService.route({
-//Need help on passing information from database into origin and desination.//
+
           origin: origin,  //Origin and desitination can be in either zip or city name.
           destination: destination,
 
