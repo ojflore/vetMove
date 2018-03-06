@@ -4,7 +4,6 @@ var mysql = require("mysql");
 var credentials = require("./credentials");
 var qs = require("querystring");
 
-//add users
 http.createServer(function(req, res) {
   try {
     var path = req.url.replace(/\/?(?:\?.*)?$/, "").toLowerCase();
@@ -149,36 +148,6 @@ function addUser(req, res) {
   });
 }
 
-function address(req, res) {
-  var conn = mysql.createConnection(credentials.connection);
-  // connect to database
-  conn.connect(function(err) {
-    if (err) {
-      console.error("ERROR: cannot connect: " + e);
-      return;
-    }
-    // query the database
-    conn.query("SELECT * FROM Address", function(err, rows, fields) {
-      // build json result object
-      var outjson = {};
-      if (err) {
-        // query failed
-        outjson.success = false;
-        outjson.message = "Query failed: " + err;
-      }
-      else {
-        // query successful
-        outjson.success = true;
-        outjson.message = "Query successful!";
-        outjson.data = rows;
-      }
-      // return json object that contains the result of the query
-      sendResponse(req, res, outjson);
-    });
-    conn.end();
-  });
-}
-
 function moveRequest(req, res) {
   var conn = mysql.createConnection(credentials.connection);
   // connect to database
@@ -187,8 +156,8 @@ function moveRequest(req, res) {
       console.error("ERROR: cannot connect: " + e);
       return;
     }
-    // query the database
-    conn.query("SELECT * FROM MoveRequest", function(err, rows, fields) {
+    // query the database ****This pulls the ID User from the database
+    conn.query("SELECT * FROM MoveRequest WHERE ID = ?;", [req.url.split("?")[1].split("=")[1]], function(err, rows, fields) {
       // build json result object
       var outjson = {};
       if (err) {
@@ -249,4 +218,5 @@ function addMoveRequest(req, res) {
     });
   });
 }
+
 console.log("Server started on localhost: 3000; press Ctrl-C to terminate....");
