@@ -7,14 +7,18 @@ var qs = require("querystring");
 http.createServer(function(req, res) {
   try {
     var path = req.url.replace(/\/?(?:\?.*)?$/, "").toLowerCase();
+    console.log(path);
     if (path === "/users") {
       users(req, res);
     }
     else if (path === "/add_user") {
       addUser(req, res);
-    }//This identifies our portion
+    }
     else if (path === "/moverequest") {
-      moverequest(req, res);
+      moveRequest(req, res);
+    }
+    else if (path === "/add_moverequest") {
+      addMoveRequest(req, res);
     }
     else {
       serveStaticFile(res, path);
@@ -144,7 +148,7 @@ function addUser(req, res) {
   });
 }
 
-function moverequest(req, res) {
+function moveRequest(req, res) {
   var conn = mysql.createConnection(credentials.connection);
   // connect to database
   conn.connect(function(err) {
@@ -171,6 +175,47 @@ function moverequest(req, res) {
       sendResponse(req, res, outjson);
     });
     conn.end();
+  });
+}
+
+function addMoveRequest(req, res) {
+  var body = "";
+  req.on("data", function (data) {
+    body += data;
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 1e6) {
+      // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+      req.connection.destroy();
+    }
+  });
+  req.on("end", function () {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    // connect to database
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+      }
+      conn.query("INSERT INTO MoveRequest (FromZip) VALUE (?)", [injson.FromZip], function(err, rows, fields) {
+        console.log(JSON.stringify(rows));
+        // build json result object
+        var outjson = {};
+        if (err) {
+          // query failed
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+        }
+        else {
+          // query successful
+          outjson.success = true;
+          outjson.message = "Query successful!";
+        }
+        // return json object that contains the result of the query
+        sendResponse(req, res, outjson);
+      });
+      conn.end();
+    });
   });
 }
 
