@@ -1,83 +1,140 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
-<link rel="stylesheet" type="text/css" href="style.css"/>
-<link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet">
-<script src="jquery-3.3.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="stylevetmove.css"/>
+<link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet"/>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link rel="stylesheet" href="/resources/demos/style.css">
+<script src="jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>vetMove</title>
 </head>
-  <body>
-    <!-- <div class="ctn"> -->
-      <div class="landing">
-        <div class="header">
-          <img class="emblem" src="emblems.png"/>
-          <img class="logo" src="logo.png"/>
-        </div>
-        <div class="left-box">
-          <form class="origin">
-            <p class="org-text">Origin</p>
-            <input type="text" id="old-city"><br>
-            <p class="description">Zip Code</p>
-            <!-- <ul>City: <input type="text" id="old-city"><br></ul> -->
-            <!-- <ul>State: <input type="text" id="old-city"><br></ul> -->
-            <!-- <ul>Zip: <input type="text" id="old-city"><br></ul> -->
-          </form>
-        </div>
+  <body class="landing">
+    <div class="container">
+	<div class="emblem-holder">
+      <img class="emblem" src="emblem.png"/>
+	</div>
+	<div class="logo-holder">
+	  <img class="logo" src="logo.png"/>
+	</div>
 
-        <div class="center-box">
-          <form class="dest">
+        <div class="box">
+
+		 <div class="form1-holder">
+		  <form class="zip-code-input">
+            <p class="org-text">Origin</p>
+            <input type="text" id="old-city">
+            <p class="zip">Zip Code</p>
+			<br>
             <p>Destination</p>
             <input type="text" id="new-city">
-            <p class="description">Zip Code</p>
-            <!-- <ul>State: <input type="text" id="new-state"><br></ul>
-            <ul>Zip: <input type="text" id="new-zip"><br></ul> -->
+            <p class="zip">Zip Code</p>
           </form>
-        </div>
+		 </div>
 
-        <div class="right-box">
+		 <div class="form2-holder">
           <form class="details">
             <p class="det-header">Details</p>
-            <p class="det-text">
-            <label class="people"> # of People Moving: </label><input type="text" id="det-input"><br>
+            <label class="people"> # of People Moving: </label><input type="text" id="people"><br>
             <label class="bdrm_input"># of Bedrooms: </label>
               <select id="bedrooms">
                 <option>Select</option>
-                <option>Studio to 1 bdrm</option>
-                <option>2bdrm to 3bdrm</option>
-                <option>3bdrm to 4bdrm</option>
+                <option>Studio - 1 bdrm</option>
+                <option>2 - 3 bdrm</option>
+                <option>3 - 4 bdrm</option>
                 <option>5+ bdrms</option>
               </select><br>
             <label class="sqft">Square Footage: </label><input type="text" id="sqft"><br>
             <label class="datepicker">Date Requested: </label><input type="text" id="datepicker">
-            </p>
           </form>
+		 </div>
+
         </div>
-      <label class="sub-button"><button type="submit" class="submit">Submit Request</button></label>
+
+		<div class="button-holder">
+          <button type="submit" class="submit" id="submit">Submit Request</button>
+        </div>
 
       <div class="footer">
-        <q>Created for Veteran's by Veteran's</q>
+        <q>Created for Veterans by Veterans</q>
         <p>
         <a href="mailto:vetmove@pointpark.edu?Subject=Information" target="_top">Contact Us</a>
         <a href="about.html">About Us</a>
         </p>
       </div>
     </div>
-  <!-- </div> -->
 
     <script>
-
-    $( function() {
+    $(function() {
       $( "#datepicker" ).datepicker({
         orientation: 'bottom'
       });
+      $("#submit").click(function() {
+       var fromZip = $("#old-city").val();
+       var toZip = $("#new-city").val();
+       var numberOfPeople = $("#people").val();
+       var squareFootage = $("#sqft").val();
+       var numberOfRooms = $("#bedrooms").val();
+       // var moveType = $("#move-type").val();
+       if (!fromZip) {
+         alert("Provide Origin Zip Code");
+       }
+       else if (!toZip) {
+         alert("Provide Destination Zip Code");
+       }
+       else if (!numberOfPeople) {
+         alert("Provide Number of People Moving");
+       }
+       else if (!numberOfRooms) {
+         alert("Provide Number of Bedrooms");
+       }
+       else if (!squareFootage) {
+         alert("Provide Square Footage");
+       }
+       // else if (!moveType) {
+       //   alert("Select Type of Move");
+       // }
+       else {
+         $.ajax({
+           type: "POST",
+           url: "add_moverequest",
+           data: JSON.stringify({
+             FromZip: fromZip,
+             ToZip: toZip,
+             NumberOfPeople: numberOfPeople,
+             SquareFootage: squareFootage,
+             NumberOfRooms: numberOfRooms
+             // Name: name
+           }),
+           success: function(json) {
+             //console.log(JSON.stringify(json));
+             if (!json.success) {
+               alert(json.message);
+             }
+             else {
+               // showUsers();
+               console.log(JSON.stringify(json));
+               // window.location.replace("moverselection.html?id=" + json.id);
+               window.location.replace("confirm.html?id=" + json.id);
+             }
+           },
+           error: function (textStatus, errorThrown) {
+             alert("Request failed!");
+           }
+         });
+       }
+     });
     });
 
-    </script>
+
+  </script>
   </body>
 </html>
 
