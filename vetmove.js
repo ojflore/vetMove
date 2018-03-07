@@ -228,8 +228,8 @@ function addMoveRequest(req, res) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      conn.query("INSERT INTO MoveRequest (FromZip,ToZip,NumberOfPeople,SquareFootage,NumberOfRooms,Distance,MoverID) VALUE (?,?,?,?,?,?,?)", [injson.FromZip, injson.ToZip, injson.NumberOfPeople, injson.SquareFootage, injson.NumberOfRooms, injson.Name], function(err, rows, fields) {
-        console.log(JSON.stringify(rows.insertId));
+      conn.query("INSERT INTO MoveRequest (FromZip,ToZip,NumberOfPeople,SquareFootage,NumberOfRooms) VALUE (?,?,?,?,?)", [injson.FromZip, injson.ToZip, injson.NumberOfPeople, injson.SquareFootage, injson.NumberOfRooms], function(err, rows, fields) {
+        // console.log(JSON.stringify(rows.insertId));
         // build json result object
         var outjson = {};
         if (err) {
@@ -250,3 +250,5 @@ function addMoveRequest(req, res) {
     });
   });
 }
+
+console.log("Server started on localhost: 3000; press Ctrl-C to terminate....");
