@@ -8,6 +8,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  height: auto;
 }
 
 .landing {
@@ -15,11 +16,12 @@ body {
     background: url('jet.png') no-repeat center center;
     background-size: cover;
     width: auto;
+    height: auto;
     z-index:-1;
 }
 
 .logo {
-  width: 20%;
+  width: 30%;
 }
 
 .emblem-holder {
@@ -33,37 +35,33 @@ body {
   position: relative;
 }
 
-.box {
+.row {
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+  margin-top: 10%;
   background-color: #4b5320;
   opacity: .8;
-  width: 100%;
-  height: 250px;
   border-radius: 10px;
-  position: relative;
   overflow: hidden;
-  margin-top: 10%;
+  position: relative;
+  /* display: inline-block; */
 }
+
+/* .col-4 {
+  right: 0;
+  left: 0;
+} */
 
 /* zipcode form */
-.form1-holder {
-  float: left;
-  margin-left: 20%;
-  margin-top: 25px;
-}
-
-p {
+label {
   font-size: 1.2em;
   padding: 3px;
   margin: 0;
-  text-align: center;
-}
-
-.zip-code-input {
-  font-size: 1em;
   color: white;
-  position: relative;
-  /* margin-left: 200px; */
- }
+  /* width: 10px; */
+  /* text-align: center; */
+}
 
 .zip {
   padding: 0;
@@ -92,19 +90,13 @@ p {
 /* details form */
 
 .form2-holder {
-  float: right;
   padding: 0;
   margin: 0;
-  margin-top: 25px;
-  margin-right: 15%;
 }
 
 .details {
   font-size: 1em;
   color: white;
-  position: relative;
-  margin: 0;
-  /* margin-right: 200px; */
 }
 
 label {
@@ -122,7 +114,7 @@ label {
 
 #bedrooms {
   border-radius: 5px;
-  width: 117px;
+  width: 120px;
   height: 25px;
   text-align: center;
   font-size: .8em;
@@ -135,20 +127,19 @@ label {
   text-align: center;
 }
 
-/* date picker font */
-.datepicker {
-  color: white;
-  border-radius: 5px;
-  position: relative;
-}
-
 /* date selection input */
 #datepicker {
   color: #4b5320;
-  border-radius: 3px;
+  border-radius: 5px;
   text-align: center;
-  width: 40%;
-  height: 10%;
+  width: 95px;
+  height: 25px;
+}
+
+/* date picker font */
+.datepicker {
+  border-radius: 5px;
+  position: relative;
 }
 
 /* submit button div */
@@ -168,7 +159,6 @@ label {
   border-color: #4b5320;
   margin-top: 5%;
   position: relative;
-  /* overflow: hidden; */
 }
 
 /* submit button styling (hovering) */

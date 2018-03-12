@@ -18,44 +18,54 @@
 </head>
   <body class="landing">
     <div class="container">
-	<div class="emblem-holder">
-      <img class="emblem" src="emblem.png"/>
-	</div>
-	<div class="logo-holder">
-	  <img class="logo" src="logo.png"/>
-	</div>
+    	<div class="emblem-holder">
+          <img class="emblem" src="emblem.png">
+    	</div>
+    	<div class="logo-holder">
+    	  <img class="logo" src="logo.png">
+    	</div>
 
-        <div class="box">
+      <div class="row justify-content-center">
+<!-- left-side of input box -->
+          <div class="col-4">
+<!-- origin input field -->
+            <label>Origin</label><br>
+              <input type="text" id="old-city"><br>
+                <label class="zip">Zip Code</label><br>
 
-		 <div class="form1-holder">
-		  <form class="zip-code-input">
-            <p class="org-text">Origin</p>
-            <input type="text" id="old-city">
-            <p class="zip">Zip Code</p>
-			<br>
-            <p>Destination</p>
-            <input type="text" id="new-city">
-            <p class="zip">Zip Code</p>
-          </form>
-		 </div>
-
-		 <div class="form2-holder">
-          <form class="details">
-            <p class="det-header">Details</p>
-            <label class="people"> # of People Moving: </label><input type="text" id="people"><br>
-            <label class="bdrm_input"># of Bedrooms: </label>
-              <select id="bedrooms">
-                <option>Select</option>
-                <option>Studio - 1 bdrm</option>
-                <option>2 - 3 bdrm</option>
-                <option>3 - 4 bdrm</option>
-                <option>5+ bdrms</option>
-              </select><br>
-            <label class="sqft">Square Footage: </label><input type="text" id="sqft"><br>
-            <label class="datepicker">Date Requested: </label><input type="text" id="datepicker">
-          </form>
-		 </div>
-
+<!-- destination input field -->
+            <label>Destination</label><br>
+              <input type="text" id="new-city"><br>
+                <label class="zip">Zip Code</label><br>
+                <!-- move selection field -->
+                  <label>Type of Move: </label>
+                    <select id="move">
+                      <option>select</option>
+                      <option>I need a truck</option>
+                      <option>I need movers</option>
+                      <option>I need both</option>
+                    </select>
+              </div>
+<!-- right-side of input box  -->
+          <div class="col-4">
+<!-- details input starts here -->
+            <label>Details</label>
+            <br>
+              <label># of People Moving: </label><input type="text" id="people">
+               <br>
+               <label class="bdrm_input"># of Bedrooms: </label>
+                 <select id="bedrooms">
+                   <option>Select</option>
+                   <option>Studio - 1 bdrm</option>
+                   <option>2 - 3 bdrm</option>
+                   <option>3 - 4 bdrm</option>
+                   <option>5+ bdrms</option>
+                 </select>
+                 <br>
+               <label class="sqft">Square Footage: </label><input type="text" id="sqft">
+               <br>
+               <label class="datepicker">Date Requested: </label><input type="text" id="datepicker">
+          </div>
         </div>
 
 		<div class="button-holder">
@@ -71,70 +81,70 @@
       </div>
     </div>
 
-    <script>
-    $(function() {
-      $( "#datepicker" ).datepicker({
-        orientation: 'bottom'
+      <script>
+      $(function() {
+        $( "#datepicker" ).datepicker({
+          orientation: 'bottom'
+        });
+        $("#submit").click(function() {
+         var fromZip = $("#old-city").val();
+         var toZip = $("#new-city").val();
+         var numberOfPeople = $("#people").val();
+         var squareFootage = $("#sqft").val();
+         var numberOfRooms = $("#bedrooms").val();
+         // var moveType = $("#move-type").val();
+         if (!fromZip) {
+           alert("Provide Origin Zip Code");
+         }
+         else if (!toZip) {
+           alert("Provide Destination Zip Code");
+         }
+         else if (!numberOfPeople) {
+           alert("Provide Number of People Moving");
+         }
+         else if (!numberOfRooms) {
+           alert("Provide Number of Bedrooms");
+         }
+         else if (!squareFootage) {
+           alert("Provide Square Footage");
+         }
+         // else if (!moveType) {
+         //   alert("Select Type of Move");
+         // }
+         else {
+           $.ajax({
+             type: "POST",
+             url: "add_moverequest",
+             data: JSON.stringify({
+               FromZip: fromZip,
+               ToZip: toZip,
+               NumberOfPeople: numberOfPeople,
+               SquareFootage: squareFootage,
+               NumberOfRooms: numberOfRooms
+               // Name: name
+             }),
+             success: function(json) {
+               //console.log(JSON.stringify(json));
+               if (!json.success) {
+                 alert(json.message);
+               }
+               else {
+                 // showUsers();
+                 console.log(JSON.stringify(json));
+                 // window.location.replace("moverselection.html?id=" + json.id);
+                 window.location.replace("confirm.html?id=" + json.id);
+               }
+             },
+             error: function (textStatus, errorThrown) {
+               alert("Request failed!");
+             }
+           });
+         }
+       });
       });
-      $("#submit").click(function() {
-       var fromZip = $("#old-city").val();
-       var toZip = $("#new-city").val();
-       var numberOfPeople = $("#people").val();
-       var squareFootage = $("#sqft").val();
-       var numberOfRooms = $("#bedrooms").val();
-       // var moveType = $("#move-type").val();
-       if (!fromZip) {
-         alert("Provide Origin Zip Code");
-       }
-       else if (!toZip) {
-         alert("Provide Destination Zip Code");
-       }
-       else if (!numberOfPeople) {
-         alert("Provide Number of People Moving");
-       }
-       else if (!numberOfRooms) {
-         alert("Provide Number of Bedrooms");
-       }
-       else if (!squareFootage) {
-         alert("Provide Square Footage");
-       }
-       // else if (!moveType) {
-       //   alert("Select Type of Move");
-       // }
-       else {
-         $.ajax({
-           type: "POST",
-           url: "add_moverequest",
-           data: JSON.stringify({
-             FromZip: fromZip,
-             ToZip: toZip,
-             NumberOfPeople: numberOfPeople,
-             SquareFootage: squareFootage,
-             NumberOfRooms: numberOfRooms
-             // Name: name
-           }),
-           success: function(json) {
-             //console.log(JSON.stringify(json));
-             if (!json.success) {
-               alert(json.message);
-             }
-             else {
-               // showUsers();
-               console.log(JSON.stringify(json));
-               // window.location.replace("moverselection.html?id=" + json.id);
-               window.location.replace("confirm.html?id=" + json.id);
-             }
-           },
-           error: function (textStatus, errorThrown) {
-             alert("Request failed!");
-           }
-         });
-       }
-     });
-    });
 
 
-  </script>
+    </script>
   </body>
 </html>
 
