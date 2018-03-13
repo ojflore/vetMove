@@ -3,25 +3,34 @@ html {
   padding: 0;
   font-family: 'BenchNine', sans-serif;
   height: 100%;
+  overflow: auto;
 }
 
 body {
   margin: 0;
   padding: 0;
-  height: auto;
+  height: 100%;
+  overflow: auto;
+}
+
+.container {
+  /* height: 800px; */
+  overflow: hidden;
 }
 
 .landing {
-    content:'';
+    /* content:''; */
     background: url('jet.png') no-repeat center center;
     background-size: cover;
     width: auto;
-    height: auto;
+    height: 100%;
     z-index:-1;
+    margin: 0;
+    padding: 0;
 }
 
 .logo {
-  width: 30%;
+  width: 50%;
 }
 
 .emblem-holder {
@@ -56,7 +65,7 @@ body {
 /* zipcode form */
 label {
   font-size: 1.2em;
-  padding: 3px;
+  padding: 0px;
   margin: 0;
   color: white;
   /* width: 10px; */
@@ -157,7 +166,7 @@ label {
   font-size: 1.2em;
   border-width: lighter;
   border-color: #4b5320;
-  margin-top: 5%;
+  margin-top: 10px;
   position: relative;
 }
 
@@ -179,7 +188,7 @@ q {
 /* page footer */
 .footer {
   /* border: solid 1px red; */
-  position: fixed;
+  position: absolute;
   bottom: 0;
   color: white;
   background-color: #4b5320;
@@ -188,13 +197,14 @@ q {
   right: 0;
   padding-top: 5px;
   padding-bottom: 5px;
-
 }
 
 /* footer links */
 a {
-  color: white;
+  /* color: white; */
   padding: 3px;
+  text-decoration: underline;
+  font-size: 1.3em;
 }
 
 
