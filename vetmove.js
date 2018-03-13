@@ -190,7 +190,7 @@ function moveRequest(req, res) {
     // query the database ****This pulls the ID User from the database
     console.log(req.url.split("?")[1].split("=")[1]);
     // console.log(req.url)
-    conn.query("SELECT * FROM MoveRequest LEFT JOIN Mover ON MoveRequest.MoverID = Mover.ID WHERE MoveRequest.ID = 1;", [req.url.split("?")[1].split("=")[1]], function(err, rows, fields) {
+    conn.query("SELECT * FROM MoveRequest LEFT JOIN Mover ON MoveRequest.MoverID = Mover.ID WHERE MoveRequest.ID = ?;", [req.url.split("?")[1].split("=")[1]], function(err, rows, fields) {
       // build json result object
       var outjson = {};
       if (err) {
