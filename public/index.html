@@ -16,7 +16,8 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>vetMove</title>
 </head>
-  <body class="landing">
+  <body>
+    <div class="landing">
     <div class="container">
     	<div class="emblem-holder">
           <img class="emblem" src="emblem.png">
@@ -37,15 +38,19 @@
             <label>Destination</label><br>
               <input type="text" id="new-city"><br>
                 <label class="zip">Zip Code</label><br>
-                <!-- move selection field -->
-                  <label>Type of Move: </label>
-                    <select id="move">
-                      <option>select</option>
-                      <option>I need a truck</option>
-                      <option>I need movers</option>
-                      <option>I need both</option>
-                    </select>
               </div>
+
+<!-- Checkboxradio -->
+            <div class="row-bottom">
+              <label>Type of Move: </label>
+                <form>
+                  <div id="move">
+                    <input type="radio" id="radio1" name="radio" checked="checked"><label for="radio1">I need a truck</label><br>
+                    <input type="radio" id="radio2" name="radio"><label for="radio2">I need movers</label><br>
+                    <input type="radio" id="radio3" name="radio"><label for="radio3">I need both</label>
+                  </div>
+                </form>
+            </div>
 <!-- right-side of input box  -->
           <div class="col-md-4">
 <!-- details input starts here -->
@@ -69,20 +74,26 @@
         </div>
 
 		<div class="button-holder">
-      <button onclick="window.location.href='confirm.html'" type="submit" id="submit" class="submit">Submit Request</button>
+      <button type="submit" id="submit" class="submit">Submit Request</button>
     </div>
 
-      <div class="footer">
-        <q>Created for Veterans by Veterans</q>
-        <p>
-        <a href="mailto:vetmove@pointpark.edu?Subject=Information" target="_top">Contact Us</a>
-        <a href="about.html">About Us</a>
-        </p>
-      </div>
+
     </div>
 
+  </div>
+  <div class="footer">
+    <q>Created for Veterans by Veterans</q>
+    <p>
+    <a href="mailto:vetmove@pointpark.edu?Subject=Information" target="_top">Contact Us</a>
+    <a href="about.html">About Us</a>
+    </p>
+  </div>
       <script>
       $(function() {
+        // $("div").css("height", $(window).height());
+        // $(​window​).bind("resize",function() {
+        //   $("div").css("height", $(window).height());
+        // });​​​​
         $( "#datepicker" ).datepicker({
           orientation: 'bottom'
         });
@@ -135,8 +146,20 @@
                  window.location.replace("confirm.html?id=" + json.id);
                }
              },
-             error: function (textStatus, errorThrown) {
-               alert("Request failed!");
+             error: function (jqXHR, textStatus, errorThrown) {
+               alert("Request failed!" + textStatus + " " + errorThrown + " " + jqXHR.status + " " + jqXHR.statusText + " " + jqXHR.responseText);
+
+
+            // "AJAXerrorHandler" : function(jqXHR, textStatus, errorThrown){
+            //         $('body').prepend('Error: <ul>'+
+            //             '<li>textStatus: '+textStatus+'</li>'+
+            //             '<li>errorThrown: '+errorThrown+'</li>'+
+            //             '<li>jqXHR.status: '+jqXHR.status+'</li>'+
+            //             '<li>jqXHR.statusText: '+jqXHR.statusText+'</li>'+
+            //             //'<li>jqXHR.responseText: '+jqXHR.responseText+'</li>'+
+            //             '</ul>');
+            //     },
+
              }
            });
          }
