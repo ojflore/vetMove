@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="styletest.css"/>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Confirmation Page</title>
+    <style>
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: DarkBlue;
+      }
+
+    </style>
+
+    <script>
+
+    function initMap() {
+      console.log("Hello World");
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var moverequestid = url.searchParams.get("id");
+
+      //var moverequestid = 2;
+      $.ajax({
+       type: "GET",
+       url: "moverequest?id=" + moverequestid,
+       success: function(json) {
+         //console.log(JSON.stringify(json));
+         if (!json.success) {
+           alert(json.message);
+         }
+         else {//*******This prints the database information we are pulling from
+           console.log(JSON.stringify(json));
+           console.log(json.data[0].FromZip);
+           console.log(json.data[0].ToZip);
+           console.log(json.data[0].MoverName);
+      //THANK YOU!!!//
+           $("#fromZip").val(json.data[0].FromZip);
+           $("#toZip").val(json.data[0].ToZip);
+           $("#npeople").val(json.data[0].NumberOfPeople);
+           $("#sqfoot").val(json.data[0].SquareFootage);
+           $("#nroom").val(json.data[0].NumberOfRooms);
+           $("#mover").val(json.data[0].MoverName);
+           // $("#move-date").val(json.data)
+
+             var directionsDisplay = new google.maps.DirectionsRenderer;
+             var directionsService = new google.maps.DirectionsService;
+             var map = new google.maps.Map(document.getElementById('map'),);
+             var trafficLayer = new google.maps.TrafficLayer();
+
+             trafficLayer.setMap(map);
+             directionsDisplay.setMap(map);
+             directionsDisplay.setPanel(document.getElementById('right-panel'));
+
+             calculateAndDisplayRoute(directionsService, directionsDisplay, ""+json.data[0].FromZip, ""+json.data[0].ToZip );
+             document.getElementById('mode')
+
+
+         }
+       },
+       error: function (textStatus, errorThrown) {
+         alert("Request failed!");
+       }
+     });
+    }
+
+    </script>
+
+
+  </head>
+  <body>
+    <header>
+    <img class=logo src="logo.png" alt="Final Confirmation">
+
+    </header>
+<div id="panel">
+  <div id="floating-panel">
+  <input id="mode" type="hidden" value="DRIVING">Your Move Confirmation</input><br>
+  Origin : <input id="fromZip" size="5" readonly></input>
+  Destination : <input id="toZip" size="5" readonly></input>
+  Number of People : <input id="npeople" size="2" readonly></input>
+  Number of rooms : <input id="nroom" size="2" readonly></input>
+  Square Footage : <input id="sqfoot" size="4" readonly></input>
+  Moving Company : <input id="mover" size="6" readonly></input><br>
+  <button onclick="printpage()">Print this page</button>
+
+  <script>
+  function printpage() {
+      window.print();
+  }
+  </script>
+  </div>
+</div>
+<div id="right-panel"></div>
+
+    <div id="map"></div>
+
+    <script>
+
+
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay, origin,destination) {
+        var selectedMode = document.getElementById('mode').value;
+        directionsService.route({
+
+          origin: origin,  //Origin and desitination can be in either zip or city name.
+          destination: destination,
+
+          travelMode: google.maps.TravelMode[selectedMode]
+        }, function(response, status) {
+          if (status == 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlT_tN3gQgvp0LXwVbNz6z79MokpIOP5U&callback=initMap">
+    </script>
+  </body>
+</html>
