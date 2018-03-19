@@ -2,7 +2,7 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="style.css"/>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -14,7 +14,7 @@
         height: 100%;
         margin: 0;
         padding: 0;
-        background-color: #4b5320
+        background-color: DarkBlue;
       }
 
     </style>
@@ -40,11 +40,14 @@
            console.log(JSON.stringify(json));
            console.log(json.data[0].FromZip);
            console.log(json.data[0].ToZip);
+           console.log(json.data[0].MoverName);
       //THANK YOU!!!//
+           $("#fromZip").val(json.data[0].FromZip);
+           $("#toZip").val(json.data[0].ToZip);
            $("#npeople").val(json.data[0].NumberOfPeople);
            $("#sqfoot").val(json.data[0].SquareFootage);
            $("#nroom").val(json.data[0].NumberOfRooms);
-           $("#mover").val(json.data[0].Name);
+           $("#mover").val(json.data[0].MoverName);
            // $("#move-date").val(json.data)
 
              var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -80,10 +83,12 @@
 <div id="panel">
   <div id="floating-panel">
   <input id="mode" type="hidden" value="DRIVING">Your Move Confirmation</input><br>
-  Number of People : <input id="npeople" size="5"></input>
-  Number of rooms : <input id="nroom" size="13"></input>
-  Square Footage : <input id="sqfoot" size="6"></input>
-  Moving Company : <input id="mover" size="12"></input><br>
+  Origin : <input id="fromZip" size="5" readonly></input>
+  Destination : <input id="toZip" size="5" readonly></input>
+  Number of People : <input id="npeople" size="2" readonly></input>
+  Number of rooms : <input id="nroom" size="2" readonly></input>
+  Square Footage : <input id="sqfoot" size="4" readonly></input>
+  Moving Company : <input id="mover" size="6" readonly></input><br>
   <button onclick="printpage()">Print this page</button>
 
   <script>

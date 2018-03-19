@@ -150,6 +150,7 @@ label {
 
 button {
   margin: 10px;
+  button: 5px;
 }
 
 .submit {
@@ -209,7 +210,7 @@ a {
 }
 
 
-/*---Jaime's additions*/
+
 /*---Jaime's additions*/
 /*Jaime's additions*/
 
@@ -224,7 +225,7 @@ header {
   border-style:ridge;
   /* width: 100%; */
   color: white;
-  background-color: #4b5320;
+  background-color: DarkBlue;
   text-align: center;
   left: 0;
   right: 0;
@@ -352,17 +353,76 @@ ul li.checked::before {
         width: 50%;
       }
 
-      #right-panel select, #right-panel input {
-        font-size: 10px;
-      }
-
-      #right-panel select {
-        width: 100%;
-      }
-
       #right-panel i {
         font-size: 10px;
       }
       #right-panel {
         float: left;
         overflow: scroll;
+      }
+
+      #npeople {
+        width: 10px;
+      }
+
+      #nroom {
+        width: 10px;
+      }
+
+      #sqfoot {
+        width: 30px;
+      }
+
+      #mover {
+        width: 40px;
+      }
+      #fromZip {
+        width: 40px;
+      }
+      #toZip {
+        width: 40px;
+      }
+
+  button {
+    outline: none;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+/*Pringting Style*/
+@media print {
+
+
+  body  {
+    visibility: hidden;
+  }
+  #panel {
+    visibility: visible;
+    height: 60px;
+    border: none;
+    margin: 1px;
+
+  }
+  button {
+    visibility: hidden;
+  }
+
+  #map {
+    visibility: hidden;
+  }
+
+  #right-panel {
+    visibility: visible;
+    font-family: 'Roboto','sans-serif';
+    font-size: 10px;
+    margin: 1px;
+    padding-left: 1px;
+    background-color: white;
+    border: none;
+    height: 100%;
+    overflow: visible;
+
+
+  }
+}
