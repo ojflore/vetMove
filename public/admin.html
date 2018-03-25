@@ -15,15 +15,18 @@
    // var moverequestid = 1;
    $.ajax({
      type: "GET",
-     url: "moverequest?id=" + moverequestid,
-     // url: "moverequest",
+     // url: "moverequest?id=1", + moverequestid,
+     url: "allmoverequest",
      success: function(json) {
        console.log(JSON.stringify(json));
        var results = json.data;
        for (var i = 0; i < results.length; i++) {
          var body = $(document.body);
          // body.append(results[i].ID + " " + results[i].FromZip + "<br>");
-         body.append(results[i].ID + " " + results[i].FromZip + "<br>");
+         $("#peeps").append(json.data[0].NumberOfPeople);
+         $("#sqft").append(json.data[0].SquareFootage);
+         $("#room").append(json.data[0].NumberOfRooms);
+         $("#mover").append(json.data[0].Name);
        }
      },
      error: function (textStatus, errorThrown) {
@@ -52,7 +55,7 @@
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
+        <td id="peeps"></td>
         <td></td>
         <td></td>
         <td></td>

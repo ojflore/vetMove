@@ -21,6 +21,9 @@ http.createServer(function(req, res) {
     else if (path === "/add_moverequest") {
       addMoveRequest(req, res);
     }
+    else if (path === "/allmoverequest") {
+      allMoveRequest(req, res);
+    }
     else {
       serveStaticFile(res, path);
     }
@@ -250,6 +253,38 @@ function addMoveRequest(req, res) {
       });
       conn.end();
     });
+  });
+}
+
+function allMoveRequest(req, res) {
+  var conn = mysql.createConnection(credentials.connection);
+  // connect to database
+  conn.connect(function(err) {
+    if (err) {
+      console.error("ERROR: cannot connect: " + e);
+      return;
+    }
+    // query the database ****This pulls the ID User from the database
+    // console.log(req.url.split("?")[1].split("=")[1]);
+    // console.log(req.url)
+    conn.query("SELECT * FROM MoveRequest LEFT JOIN Mover ON MoveRequest.MoverID = Mover.ID;", function(err, rows, fields)  {
+      // build json result object
+      var outjson = {};
+      if (err) {
+        // query failed
+        outjson.success = false;
+        outjson.message = "Query failed: " + err;
+      }
+      else {
+        // query successful
+        outjson.success = true;
+        outjson.message = "Query successful!";
+        outjson.data = rows;
+      }
+      // return json object that contains the result of the query
+      sendResponse(req, res, outjson);
+    });
+    conn.end();
   });
 }
 
