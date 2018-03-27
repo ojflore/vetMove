@@ -57,10 +57,10 @@ function serveStaticFile(res, path, contentType, responseCode) {
     else if (path.endsWith(".css")) {
       contentType = "text/css; charset=utf-8";
     }
-    else if (path.endsWith(".png")) {
+    else if (path.toLowerCase().endsWith(".png")) {
       contentType = "image/png";
     }
-    else if (path.endsWith(".jpg")) {
+    else if (path.toLowerCase().endsWith(".jpg") || path.toLowerCase().endsWith(".jpeg")) {
       contentType = "text/jpeg";
     }
   }
