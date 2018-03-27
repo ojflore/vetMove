@@ -1,0 +1,428 @@
+html body {
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  width: 20%;
+  opacity: 0.8;
+  /* border: solid 1px red; */
+}
+
+.emblem {
+  width: 50%;
+  float: right;
+  opacity: 0.6;
+  /* height: 75px; */
+  /* border: solid 1px red; */
+}
+
+.landing:after {
+    content:'';
+    background: url('jet.jpeg') no-repeat center center;
+    position: absolute;
+    background-size: cover;
+    top: 0px;
+    left: 0px;
+    width:100%;
+    height: 90%;
+    z-index:-1;
+    opacity: 0.7;
+    /* border: solid 1px red; */
+}
+
+.left-box {
+  border: solid 3px black;
+  border-radius: 10px;
+  width: 350px;
+  height: 200px;
+  background-color: #4b5320 ;
+  opacity: .7;
+  margin-left: 50px;
+  margin-top: 100px;
+  /* border: solid 1px red; */
+}
+
+.center-box {
+  margin-left: 463px;
+  margin-top: -205px;
+  position: absolute;
+  /* margin: auto; */
+  background-color: #4b5320;
+  opacity: .7;
+  width: 350px;
+  height: 200px;
+  border: solid 3px black;
+  border-radius: 10px;
+}
+
+.right-box {
+  border: solid 3px black;
+  border-radius: 10px;
+  width: 350px;
+  height: 200px;
+  background-color: #4b5320;
+  opacity: .7;
+  /* border: solid 1px red; */
+  float: right;
+  margin: 0;
+  right: 50px;
+  bottom: 205px;
+  position: relative;
+}
+
+.origin {
+  font-size: 1.3em;
+  color: white;
+  text-align: center;
+}
+
+.dest {
+  font-size: 1.3em;
+  color: white;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.details {
+  font-size: 1.3em;
+  color: white;
+  text-align: center;
+}
+
+.det-text {
+  /* border: solid 1px red; */
+  bottom: 17px;
+  position: relative;
+  text-align: center;
+}
+
+label {
+  font-size: .8em;
+  padding: 5px;
+  text-align: center;
+}
+
+#det-input {
+  border-radius: 5px;
+  width: 50px;
+  text-align: center;
+}
+
+#bedrooms {
+  border-radius: 5px;
+  width: 117px;
+  text-align: center;
+}
+
+#sqft {
+  border-radius: 5px;
+  width: 80px;
+  text-align: center;
+}
+
+#old-city {
+  padding: 0;
+  margin-top: 12px;
+  width: 70%;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+#new-city {
+  padding: 0;
+  margin-top: 12px;
+  width: 70%;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+
+.description {
+  padding: 0;
+  margin: 0;
+  font-size: .6em;
+}
+
+button {
+  margin: 10px;
+  button: 5px;
+}
+
+.submit {
+  width: 200px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: black;
+  color: #4b5320;
+  font-size: 1.2em;
+  position: absolute;
+  left: 41.6%;
+  bottom: 150px;
+  border-width: medium;
+  border-color: #4b5320;
+}
+
+.submit:hover {
+  background: white;
+  color: #4b5320;
+}
+
+q {
+  position: relative;
+  top: 10px;
+  color: white;
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.footer {
+  position: absolute;
+  /* left: 0; */
+  bottom: 0;
+  margin-bottom: 0;
+  /* border-style: ridge; */
+  border-color: black;
+  border-width:1px;
+  border-style:ridge;
+  /* width: 100%; */
+  color: white;
+  background-color: #4b5320;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+
+a {
+  font-family: cursive;
+  color: white;
+  padding: 5px;
+}
+
+.footer img {
+  top: 10px;
+  position: relative;
+
+}
+
+
+
+/*---Jaime's additions*/
+/*Jaime's additions*/
+
+
+header {
+
+  bottom: 0;
+  margin-bottom: 0;
+  /* border-style: ridge; */
+  border-color: black;
+  border-width:1px;
+  border-style:ridge;
+  /* width: 100%; */
+  color: white;
+  background-color: DarkBlue;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #ddd;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Style the header */
+
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+
+#panel {
+  width: 95%;
+  height:auto;
+  float: right;
+  margin: 20px;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: 'Roboto','sans-serif';
+  overflow: auto;
+  line-height: 30px;
+  padding-left: 15px;
+  border-style: ridge;
+  border-width: 5px;
+}
+#map {
+  height: 60%;
+  max-width: 100%;
+  margin: 50px;
+  border-style: ridge;
+  border-width: 5px;
+  top: 20px;
+}
+
+#right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 20px;
+        margin: 20px;
+        padding-left: 10px;
+        background-color: white;
+        border-style: ridge;
+        height: 60%;
+        width: 50%;
+      }
+
+      #right-panel i {
+        font-size: 10px;
+      }
+      #right-panel {
+        float: left;
+        overflow: scroll;
+      }
+
+      #npeople {
+        width: 10px;
+      }
+
+      #nroom {
+        width: 10px;
+      }
+
+      #sqfoot {
+        width: 30px;
+      }
+
+      #mover {
+        width: 40px;
+      }
+      #fromZip {
+        width: 40px;
+      }
+      #toZip {
+        width: 40px;
+      }
+
+  button {
+    outline: none;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+/*Pringting Style*/
+@media print {
+
+
+  body  {
+    visibility: hidden;
+  }
+  #panel {
+    visibility: visible;
+    height: 60px;
+    border: none;
+    margin: 1px;
+
+  }
+  button {
+    visibility: hidden;
+  }
+
+  #map {
+    visibility: hidden;
+  }
+
+  #right-panel {
+    visibility: visible;
+    font-family: 'Roboto','sans-serif';
+    font-size: 10px;
+    margin: 1px;
+    padding-left: 1px;
+    background-color: white;
+    border: none;
+    height: 100%;
+    overflow: visible;
+
+
+  }
+}

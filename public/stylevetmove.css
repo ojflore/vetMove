@@ -1,32 +1,13 @@
 html {
-  margin: 0;
-  padding: 0;
   font-family: 'BenchNine', sans-serif;
-  height: 100%;
-  overflow: auto;
 }
 
 body {
+  background: url(jet.png) no-repeat center center fixed;
+  background-size: cover;
   margin: 0;
   padding: 0;
-  height: 100%;
-  overflow: auto;
-}
-
-.container {
-  /* height: 800px; */
-  overflow: hidden;
-}
-
-.landing {
-    /* content:''; */
-    background: url('jet.png') no-repeat center center;
-    background-size: cover;
-    width: auto;
-    height: 100%;
-    z-index:-1;
-    margin: 0;
-    padding: 0;
+  overflow-x: hidden;
 }
 
 .logo {
@@ -54,22 +35,32 @@ body {
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-  /* display: inline-block; */
 }
 
-/* .col-4 {
-  right: 0;
-  left: 0;
-} */
+.need {
+  text-align: left;
+  font-size: 1em;
+  color: white;
+  font-weight: lighter;
+  padding: 0;
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+#move {
+  text-align: left;
+}
 
 /* zipcode form */
 label {
-  font-size: 1.2em;
+  /* font-size: 1.4em; */
   padding: 0px;
   margin: 0;
   color: white;
-  /* width: 10px; */
-  /* text-align: center; */
+  font-size: 1em;
+  padding: 5px;
+  text-align: center;
 }
 
 .zip {
@@ -97,7 +88,6 @@ label {
 }
 
 /* details form */
-
 .form2-holder {
   padding: 0;
   margin: 0;
@@ -106,12 +96,6 @@ label {
 .details {
   font-size: 1em;
   color: white;
-}
-
-label {
-  font-size: 1em;
-  padding: 5px;
-  text-align: center;
 }
 
 #people {
@@ -166,7 +150,8 @@ label {
   font-size: 1.2em;
   border-width: lighter;
   border-color: #4b5320;
-  margin-top: 10px;
+  margin-top: 30px;
+  margin-bottom: 73px;
   position: relative;
 }
 
@@ -186,10 +171,7 @@ q {
 }
 
 /* page footer */
-.footer {
-  /* border: solid 1px red; */
-  position: absolute;
-  bottom: 0;
+footer {
   color: white;
   background-color: #4b5320;
   text-align: center;
@@ -197,16 +179,34 @@ q {
   right: 0;
   padding-top: 5px;
   padding-bottom: 5px;
+  clear: both;
 }
 
 /* footer links */
 a {
-  /* color: white; */
   padding: 3px;
   text-decoration: underline;
   font-size: 1.3em;
 }
 
+
+/* admin page */
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
 
 
 

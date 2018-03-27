@@ -17,7 +17,6 @@
 <title>vetMove</title>
 </head>
   <body>
-    <div class="landing">
     <div class="container">
     	<div class="emblem-holder">
           <img class="emblem" src="emblem.png">
@@ -42,12 +41,13 @@
 
 <!-- Checkboxradio -->
             <div class="row-bottom">
-              <label>Type of Move: </label>
+              <label>Type of Move</label><br>
+              <h4 class="need">I need:</h4>
                 <form>
                   <div id="move">
-                    <input type="radio" id="radio1" name="radio" checked="checked"><label for="radio1">I need a truck</label><br>
-                    <input type="radio" id="radio2" name="radio"><label for="radio2">I need movers</label><br>
-                    <input type="radio" id="radio3" name="radio"><label for="radio3">I need both</label>
+                    <input type="radio" id="radio1" name="radio" checked="checked"><label for="radio1">A truck</label><br>
+                    <input type="radio" id="radio2" name="radio"><label for="radio2">Movers</label><br>
+                    <input type="radio" id="radio3" name="radio"><label for="radio3">Both</label>
                   </div>
                 </form>
             </div>
@@ -74,20 +74,17 @@
         </div>
 
 		<div class="button-holder">
-      <button type="submit" id="submit" class="submit">Submit Request</button>
+      <button id="submit" class="submit">Submit Request</button>
     </div>
-
-
-    </div>
-
   </div>
-  <div class="footer">
+  <footer class="footer">
     <q>Created for Veterans by Veterans</q>
     <p>
     <a href="mailto:vetmove@pointpark.edu?Subject=Information" target="_top">Contact Us</a>
-    <a href="about.html">About Us</a>
+    <a href="aboutpage.html">About Us</a>
     </p>
-  </div>
+  </footer>
+
       <script>
       $(function() {
         // $("div").css("height", $(window).height());
@@ -132,7 +129,6 @@
                NumberOfPeople: numberOfPeople,
                SquareFootage: squareFootage,
                NumberOfRooms: numberOfRooms
-               // Name: name
              }),
              success: function(json) {
                //console.log(JSON.stringify(json));
