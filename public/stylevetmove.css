@@ -1,14 +1,12 @@
-html {
-  font-family: 'BenchNine', sans-serif;
-}
-
-body {
-  background: url(jet.png) no-repeat center center fixed;
+html, body{
+  background: url(images/jet.png) no-repeat center center fixed;
   background-size: cover;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: 'BenchNine', sans-serif;
 }
+
 
 .logo {
   width: 50%;
@@ -29,7 +27,7 @@ body {
   text-align: center;
   margin: 0;
   padding: 10px;
-  margin-top: 10%;
+  margin-top: 150px;
   background-color: #4b5320;
   opacity: .8;
   border-radius: 10px;
@@ -150,8 +148,8 @@ label {
   font-size: 1.2em;
   border-width: lighter;
   border-color: #4b5320;
-  margin-top: 30px;
-  margin-bottom: 73px;
+  margin-top: 20px;
+  margin-bottom: 100px;
   position: relative;
 }
 
@@ -172,6 +170,8 @@ q {
 
 /* page footer */
 footer {
+  position: fixed;
+  bottom: 0;
   color: white;
   background-color: #4b5320;
   text-align: center;
@@ -188,37 +188,6 @@ a {
   text-decoration: underline;
   font-size: 1.3em;
 }
-
-
-/* admin page */
-
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*---Jaime's additions*/
 /*---Jaime's additions*/
