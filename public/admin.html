@@ -10,7 +10,6 @@
    var url_string = window.location.href;
    var url = new URL(url_string);
    var moverequestid = url.searchParams.get("id");
-   console.log(moverequestid);
    console.log("jquery loaded!");
    // var moverequestid = 1;
    $.ajax({
@@ -23,10 +22,11 @@
        for (var i = 0; i < results.length; i++) {
          var body = $(document.body);
          // body.append(results[i].ID + " " + results[i].FromZip + "<br>");
-         $("#peeps").append(json.data[0].NumberOfPeople);
-         $("#sqft").append(json.data[0].SquareFootage);
-         $("#room").append(json.data[0].NumberOfRooms);
-         $("#mover").append(json.data[0].Name);
+         // $("#peeps").append(json.data[0].NumberOfPeople);
+         // $("#sqft").append(json.data[0].SquareFootage);
+         // $("#room").append(json.data[0].NumberOfRooms);
+         // $("#mover").append(json.data[0].Name);
+         $("#moveRequest").append("<tr><td>" + results[i].MoveRequestID + "</td><td>" + results[i].MoverID + "</td><td>" + results[i].FromZip + "</td><td>" + results[i].ToZip + "</td><td>" + results[i].NumberOfPeople + "</td><td>" + results[i].SquareFootage + "</td><td>" + results[i].NumberOfRooms + "</td><td>" + results[i].Distance + "</td></tr>");
        }
      },
      error: function (textStatus, errorThrown) {
@@ -39,76 +39,17 @@
 <body>
   <div class="move_request_admin">
     <h1>Vetmove Admin</h1>
-    <table>
+    <table id="moveRequest">
       <tr>
+        <th>Move Request ID</th>
         <th>Mover ID</th>
         <th>Origin</th>
         <th>Destination</th>
-        <th>Move Type</th>
+        <!-- <th>Move Type</th> -->
         <th>People</th>
         <th>Square footage</th>
         <th>Bedrooms</th>
         <th>Distance</th>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td id="peeps"></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
       </tr>
     </table>
   </div>

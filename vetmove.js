@@ -57,10 +57,10 @@ function serveStaticFile(res, path, contentType, responseCode) {
     else if (path.endsWith(".css")) {
       contentType = "text/css; charset=utf-8";
     }
-    else if (path.endsWith(".png")) {
+    else if (path.toLowerCase().endsWith(".png")) {
       contentType = "image/png";
     }
-    else if (path.endsWith(".jpg")) {
+    else if (path.toLowerCase().endsWith(".jpg") || path.toLowerCase().endsWith(".jpeg")) {
       contentType = "text/jpeg";
     }
   }
@@ -267,7 +267,7 @@ function allMoveRequest(req, res) {
     // query the database ****This pulls the ID User from the database
     // console.log(req.url.split("?")[1].split("=")[1]);
     // console.log(req.url)
-    conn.query("SELECT * FROM MoveRequest LEFT JOIN Mover ON MoveRequest.MoverID = Mover.ID;", function(err, rows, fields)  {
+    conn.query("SELECT MoveRequest.ID as MoveRequestID, Mover.ID as MoverID, MoveRequest.FromZip, MoveRequest.ToZip, MoveRequest.NumberOfPeople, MoveRequest.SquareFootage, MoveRequest.NumberOfRooms, MoveRequest.Distance FROM MoveRequest LEFT JOIN Mover ON MoveRequest.MoverID = Mover.ID;", function(err, rows, fields)  {
       // build json result object
       var outjson = {};
       if (err) {
@@ -281,6 +281,7 @@ function allMoveRequest(req, res) {
         outjson.message = "Query successful!";
         outjson.data = rows;
       }
+      console.log(rows);
       // return json object that contains the result of the query
       sendResponse(req, res, outjson);
     });
