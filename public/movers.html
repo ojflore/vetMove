@@ -4,7 +4,19 @@
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="moverstyle.css">
+<script
+ src="https://code.jquery.com/jquery-3.3.1.min.js"
+ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+ crossorigin="anonymous"></script>
 <title>vetMove</title>
+<script>
+$(function() {
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var moverequestid = url.searchParams.get("id");
+  console.log("moverequestid: " + moverequestid);
+});
+</script>
 </head>
   <body>
     <!-- <div class="ctn"> -->
