@@ -6,8 +6,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="stylevetmove.css"/>
 <link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet"/>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -19,12 +18,11 @@
   <body>
     <div class="container">
     	<div class="emblem-holder">
-          <img class="emblem" src="emblem.png">
+          <img class="emblem" src="images/emblem.png">
     	</div>
     	<div class="logo-holder">
-    	  <img class="logo" src="logo.png">
+    	  <img class="logo" src="images/logo.png">
     	</div>
-
       <div class="row justify-content-center">
 <!-- left-side of input box -->
           <div class="col-md-4">
@@ -81,7 +79,7 @@
     <q>Created for Veterans by Veterans</q>
     <p>
     <a href="mailto:vetmove@pointpark.edu?Subject=Information" target="_top">Contact Us</a>
-    <a href="aboutpage.html">About Us</a>
+    <a href="about.html" target="_blank">About Us</a>
     </p>
   </footer>
 
@@ -146,6 +144,7 @@
                  else {
                    window.location.replace("trucker.html?id=" + json.id);
                  }
+                 // window.location.replace("confirm.html?id=" + json.id);
                }
              },
              error: function (jqXHR, textStatus, errorThrown) {
@@ -172,80 +171,3 @@
     </script>
   </body>
 </html>
-
-
-
-
-
-  <!-- // var original = null;
-  // $("dropdown").change(function()) {
-  //   if (original === null) {
-  //     original = $(document.body).css("color");
-  //   }
-  //   var value = $(this).val();
-  //   console.log(value);
-  //   $(document.body).css("background-image", value);
-  //   // $("#dropdown").append("<option>New Option</option>"); adds new option to dropdown
-  // } -->
-
-  <!-- var formRequest = {
-  name: "Joe Sixpack",
-  from: {
-    street: "...",
-    zip: "...",
-    state: "..."
-  },
-  to: {
-    street: "...",
-    zip: "...",
-    state: "..."
-  },
-  square_footage: 232
-  };
-
-  var formResponseSuccess = {
-  success: true,
-  message: "Request received.",
-  distance: 340,
-  options: [
-    {
-      moving_company: "Uhaul",
-      cost: 345
-    },
-    {
-      moving_company: "Uhaul",
-      cost: 345
-    }
-  ]
-  };
-
-  var formResponseFailure = {
-  success: false,
-  message: "Unknown from address."
-  };
-
-  function postForm(formRequest, cb) {
-  setTimeout(function() {
-    cb(Math.random() < 0.5 ? formResponseSuccess : formResponseFailure);
-  }, 0);
-  }
-
-  $(function() {
-  $("#button").click(function() {
-    postForm(formRequest, function(response) {
-      if (response.success) {
-        console.log("successful");
-      }
-      else {
-        console.log("failed");
-      }
-    });
-  })
-  });
-
-  // $(document).ready(function(){
-  //     $('#date').datepicker();
-
-  $("#date").click(function) {
-    $("#date")[0].datepicker();
-  });
