@@ -115,9 +115,6 @@
          else if (!squareFootage) {
            alert("Provide Square Footage");
          }
-         // else if (!moveType) {
-         //   alert("Select Type of Move");
-         // }
          else {
            $.ajax({
              type: "POST",
@@ -127,25 +124,26 @@
                ToZip: toZip,
                NumberOfPeople: numberOfPeople,
                SquareFootage: squareFootage,
-               NumberOfRooms: numberOfRooms
+               NumberOfRooms: numberOfRooms,
+               Movername: moveNeeds
              }),
              success: function(json) {
                //console.log(JSON.stringify(json));
                if (!json.success) {
                  alert(json.message);
                }
-               else {
-                 // showUsers();
-                 console.log(JSON.stringify(json));
-                 //window.location.replace("confirm.html?id=" + json.id);
-                 if (moveNeeds === "movers" || moveNeeds === "both") {
-                   window.location.replace("movers.html?id=" + json.id);
-                 }
-                 else {
-                   window.location.replace("trucker.html?id=" + json.id);
-                 }
-                 // window.location.replace("confirm.html?id=" + json.id);
-               }
+               if (moveNeeds === "movers" || moveNeeds === "both") {
+                  window.location.replace("movers.html?id=" + json.id);
+                }
+                else {
+                  window.location.replace("trucker.html?id=" + json.id);
+                }
+               // else {
+               //   // showUsers();
+               //   console.log(JSON.stringify(json));
+               //   // window.location.replace("movers.html");
+               //   window.location.replace("confirm.html?id=" + json.id);
+               // }
              },
              error: function (jqXHR, textStatus, errorThrown) {
                alert("Request failed!" + textStatus + " " + errorThrown + " " + jqXHR.status + " " + jqXHR.statusText + " " + jqXHR.responseText);
