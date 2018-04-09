@@ -373,18 +373,12 @@ ul li.checked::before {
         width: 30px;
       }
 
-      #move-type {
-        width: 75px;
+      #mover {
+        width: 40px;
       }
-
-      #move-comp {
-        width: 125px;
-      }
-
       #fromZip {
         width: 40px;
       }
-
       #toZip {
         width: 40px;
       }

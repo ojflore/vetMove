@@ -4,14 +4,25 @@ var mysql = require("mysql");
 var credentials = require("./credentials");
 var qs = require("querystring");
 
+//add users
 http.createServer(function(req, res) {
   try {
     var path = req.url.replace(/\/?(?:\?.*)?$/, "").toLowerCase();
+    console.log(path);
     if (path === "/users") {
       users(req, res);
     }
     else if (path === "/add_user") {
       addUser(req, res);
+    }
+    else if (path === "/moverequest") {
+      moveRequest(req, res);
+    }
+    else if (path === "/add_moverequest") {
+      addMoveRequest(req, res);
+    }
+    else if (path === "/allmoverequest") {
+      allMoveRequest(req, res);
     }
     else {
       serveStaticFile(res, path);
@@ -46,10 +57,10 @@ function serveStaticFile(res, path, contentType, responseCode) {
     else if (path.endsWith(".css")) {
       contentType = "text/css; charset=utf-8";
     }
-    else if (path.endsWith(".png")) {
+    else if (path.toLowerCase().endsWith(".png")) {
       contentType = "image/png";
     }
-    else if (path.endsWith(".jpg")) {
+    else if (path.toLowerCase().endsWith(".jpg") || path.toLowerCase().endsWith(".jpeg")) {
       contentType = "text/jpeg";
     }
   }
@@ -138,6 +149,113 @@ function addUser(req, res) {
       });
       conn.end();
     });
+  });
+}
+
+function moveRequest(req, res) {
+  var conn = mysql.createConnection(credentials.connection);
+  // connect to database
+  conn.connect(function(err) {
+    if (err) {
+      console.error("ERROR: cannot connect: " + e);
+      return;
+    }
+    // query the database ****This pulls the ID User from the database
+    console.log(req.url.split("?")[1].split("=")[1]);
+    // console.log(req.url)
+    conn.query("SELECT * FROM MoveRequest LEFT JOIN Mover ON MoveRequest.MoverID = Mover.ID WHERE MoveRequest.ID = ?;", [req.url.split("?")[1].split("=")[1]], function(err, rows, fields) {
+      // build json result object
+      var outjson = {};
+      if (err) {
+        // query failed
+        outjson.success = false;
+        outjson.message = "Query failed: " + err;
+      }
+      else {
+        // query successful
+        outjson.success = true;
+        outjson.message = "Query successful!";
+        outjson.data = rows;
+      }
+      // return json object that contains the result of the query
+      sendResponse(req, res, outjson);
+    });
+    conn.end();
+  });
+}
+
+function addMoveRequest(req, res) {
+  var body = "";
+  req.on("data", function (data) {
+    body += data;
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 1e6) {
+      // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+      req.connection.destroy();
+    }
+  });
+  req.on("end", function () {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    // connect to database
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+      }
+      conn.query("INSERT INTO MoveRequest (FromZip,ToZip,NumberOfPeople,SquareFootage,NumberOfRooms,Movername) VALUE (?,?,?,?,?,?)", [injson.FromZip, injson.ToZip, injson.NumberOfPeople, injson.SquareFootage, injson.NumberOfRooms, injson.Movername], function(err, rows, fields) {
+        // console.log(JSON.stringify(rows.insertId));
+        // build json result object
+        var outjson = {};
+        if (err) {
+          // query failed
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+        }
+        else {
+          // query successful
+          outjson.success = true;
+          outjson.message = "Query successful!";
+          outjson.id = rows.insertId;
+        }
+        // return json object that contains the result of the query
+        sendResponse(req, res, outjson);
+      });
+      conn.end();
+    });
+  });
+}
+
+function allMoveRequest(req, res) {
+  var conn = mysql.createConnection(credentials.connection);
+  // connect to database
+  conn.connect(function(err) {
+    if (err) {
+      console.error("ERROR: cannot connect: " + e);
+      return;
+    }
+    // query the database ****This pulls the ID User from the database
+    // console.log(req.url.split("?")[1].split("=")[1]);
+    // console.log(req.url)
+    conn.query("SELECT MoveRequest.ID as MoveRequestID, Mover.ID as MoverID, MoveRequest.FromZip, MoveRequest.ToZip, MoveRequest.NumberOfPeople, MoveRequest.SquareFootage, MoveRequest.NumberOfRooms, MoveRequest.Distance FROM MoveRequest LEFT JOIN Mover ON MoveRequest.MoverID = Mover.ID;", function(err, rows, fields)  {
+      // build json result object
+      var outjson = {};
+      if (err) {
+        // query failed
+        outjson.success = false;
+        outjson.message = "Query failed: " + err;
+      }
+      else {
+        // query successful
+        outjson.success = true;
+        outjson.message = "Query successful!";
+        outjson.data = rows;
+      }
+      console.log(rows);
+      // return json object that contains the result of the query
+      sendResponse(req, res, outjson);
+    });
+    conn.end();
   });
 }
 
