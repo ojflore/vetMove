@@ -43,9 +43,9 @@
               <h4 class="need">I need:</h4>
                 <form>
                   <div id="move">
-                    <input type="radio" id="radio1" name="radio" checked="checked" value="truck"><label for="radio1">A truck</label><br>
-                    <input type="radio" id="radio2" name="radio" value="movers"><label for="radio2">Movers</label><br>
-                    <input type="radio" id="radio3" name="radio" value="both"><label for="radio3">Both</label>
+                    <input type="radio" id="radio1" name="radio" checked="checked" value="Truck"><label for="radio1">A truck</label><br>
+                    <input type="radio" id="radio2" name="radio" value="Movers"><label for="radio2">Movers</label><br>
+                    <input type="radio" id="radio3" name="radio" value="Both"><label for="radio3">Both</label>
                   </div>
                 </form>
             </div>
@@ -95,7 +95,7 @@
         $("#submit").click(function() {
          var fromZip = $("#old-city").val();
          var toZip = $("#new-city").val();
-         var moveNeeds = $("input[name=radio]:checked").val();
+         var moveType = $("input[name=radio]:checked").val();
          var numberOfPeople = $("#people").val();
          var squareFootage = $("#sqft").val();
          var numberOfRooms = $("#bedrooms").val();
@@ -125,15 +125,16 @@
                NumberOfPeople: numberOfPeople,
                SquareFootage: squareFootage,
                NumberOfRooms: numberOfRooms,
-               Movername: moveNeeds
+               MoveType: moveType
              }),
              success: function(json) {
                //console.log(JSON.stringify(json));
                if (!json.success) {
                  alert(json.message);
                }
-               if (moveNeeds === "movers" || moveNeeds === "both") {
-                  window.location.replace("movers.html?id=" + json.id);
+               if (moveType === "Movers" || moveType === "Both") {
+
+                  window.location.replace("movers.html?id=" + json.id + "&trucker=" + (moveType === "Both"));
                 }
                 else {
                   window.location.replace("trucker.html?id=" + json.id);
