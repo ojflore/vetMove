@@ -17,7 +17,7 @@ $(function() {
   console.log("moverequestid: " + moverequestid);
 
   $("#bell").click(function() {
-   var moverID = 1;
+   var moverID = $("#bell").val();
      $.ajax({
        type: "POST",
        url: "set_company",
@@ -31,11 +31,12 @@ $(function() {
            alert(json.message);
          }
          var trucker = url.searchParams.get("trucker");
+         console.log(url.searchParams);
          if (trucker === "true") {
-           window.location.replace("trucker.html?id=" + json.id);
+           window.location.replace("trucker.html?id=" + moverequestid);
          }
          else {
-           window.location.replace("confirm.html?id=" + json.id);
+           window.location.replace("confirm.html?id=" + moverequestid);
          }
          // else {
          //   // showUsers();
@@ -62,6 +63,7 @@ $(function() {
      });
  });
 });
+
 </script>
 </head>
   <body>
