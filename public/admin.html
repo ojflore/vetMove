@@ -29,7 +29,7 @@
        var results = json.data;
        for (var i = 0; i < results.length; i++) {
          var body = $(document.body);
-         $("#moveRequest").append("<tr><td>" + results[i].MoveRequestID + "</td><td>" + (results[i].MoveType || "") + "</td><td>" + results[i].FromZip + "</td><td>" + results[i].ToZip + "</td><td>" + results[i].NumberOfPeople + "</td><td>" + results[i].SquareFootage + "</td><td>" + results[i].NumberOfRooms + "</td>");
+         $("#moveRequest").append("<tr><td>" + results[i].MoveRequestID + "</td><td>" + (results[i].MoveType || "") + "</td><td>" + (results[i].MoverID || "") + "</td><td>" + results[i].FromZip + "</td><td>" + results[i].ToZip + "</td><td>" + results[i].NumberOfPeople + "</td><td>" + results[i].SquareFootage + "</td><td>" + results[i].NumberOfRooms + "</td>");
          //console.log(results[i].MoveType === null ? "" : results[i].MoveType); //if null show empty string
          console.log(results[i].MoveType || ""); //if null show empty string
        }
@@ -68,38 +68,12 @@
       <tr>
         <th>Move Request ID</th>
         <th>Move Type</th>
+        <th>Mover ID</th>
         <th>Origin</th>
         <th>Destination</th>
         <th># of People</th>
         <th>Square footage</th>
         <th>Bedrooms</th>
-      </tr>
-	  <tr>
-        <td>1</td>
-        <td>Both</td>
-        <td>15222</td>
-        <td>77498</td>
-        <td>2</td>
-        <td>1000</td>
-        <td>3</td>
-      </tr>
-	  <tr>
-        <td>2</td>
-        <td>Movers</td>
-        <td>15044</td>
-        <td>20001</td>
-        <td>5</td>
-        <td>4000</td>
-        <td>5</td>
-      </tr>
-	  <tr>
-        <td>3</td>
-        <td>Truck</td>
-        <td>15223</td>
-        <td>90210</td>
-        <td>3</td>
-        <td>2000</td>
-        <td>3</td>
       </tr>
     </table>
   </div>
