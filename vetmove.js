@@ -24,6 +24,9 @@ http.createServer(function(req, res) {
     else if (path === "/allmoverequest") {
       allMoveRequest(req, res);
     }
+    else if (path === "/set_notes") {
+      setNotesRequest(req, res);
+    }
     else {
       serveStaticFile(res, path);
     }
@@ -233,7 +236,7 @@ function addMoveRequest(req, res) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      conn.query("INSERT INTO MoveRequest (FromZip,ToZip,NumberOfPeople,SquareFootage,NumberOfRooms) VALUE (?,?,?,?,?)", [injson.FromZip, injson.ToZip, injson.NumberOfPeople, injson.SquareFootage, injson.NumberOfRooms], function(err, rows, fields) {
+      conn.query("INSERT INTO MoveRequest (FromZip,ToZip,NumberOfPeople,SquareFootage,NumberOfRooms,ToDo) VALUE (?,?,?,?,?,?)", [injson.FromZip, injson.ToZip, injson.NumberOfPeople, injson.SquareFootage, injson.NumberOfRooms, injson.ToDo], function(err, rows, fields) {
         // console.log(JSON.stringify(rows.insertId));
         // build json result object
         var outjson = {};
@@ -286,6 +289,47 @@ function allMoveRequest(req, res) {
       sendResponse(req, res, outjson);
     });
     conn.end();
+  });
+}
+
+function setNotesRequest(req, res) {
+  var body = "";
+  req.on("data", function (data) {
+    body += data;
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 1e6) {
+      // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+      req.connection.destroy();
+    }
+  });
+  req.on("end", function () {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    // connect to database
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+      }
+      conn.query("UPDATE MoveRequest SET ToDo=? WHERE ID=?", [injson.ToDo, injson.ID], function(err, rows, fields) {
+        // console.log(JSON.stringify(rows.insertId));
+        // build json result object
+        var outjson = {};
+        if (err) {
+          // query failed
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+        }
+        else {
+          // query successful
+          outjson.success = true;
+          outjson.message = "Query successful!";
+        }
+        // return json object that contains the result of the query
+        sendResponse(req, res, outjson);
+      });
+      conn.end();
+    });
   });
 }
 

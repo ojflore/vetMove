@@ -2,7 +2,7 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="style.css"/>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -18,49 +18,53 @@
       }
 
 
-      /* The Modal (background) */
-      .modal {
-          display: none; /* Hidden by default */
-          position: fixed; /* Stay in place */
-          z-index: 1; /* Sit on top */
-          padding-top: 100px; /* Location of the box */
-          left: 0;
-          top: 0;
-          width: 100%; /* Full width */
-          height: 100%; /* Full height */
-          overflow: auto; /* Enable scroll if needed */
-          background-color: rgb(0,0,0); /* Fallback color */
-          background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-      }
-
-      /* Modal Content */
-      .modal-content {
-          background-color: #fefefe;
-          margin: auto;
-          padding: 20px;
-          border: 2px solid #888;
-          width: 80%;
-      }
-
-      /* The Close Button */
-      .close {
-          color: red;
-          float: right;
-          font-size: 28px;
-          font-weight: bold;
-          background-color: #fefefe;
-          border-color: red;
-      }
-
-      .close:hover,
-      .close:focus {
-          color: #000;
-          text-decoration: none;
-          cursor: pointer;
-      }
-
-
     </style>
+<script>
+$(function() {
+  // $("div").css("height", $(window).height());
+  // $(​window​).bind("resize",function() {
+  //   $("div").css("height", $(window).height());
+  // });​​​​
+
+  $("#submit").click(function() {
+   var toDo = $("#note").val();
+
+   // var moveType = $("#move-type").val();
+   // else if (!moveType) {
+   //   alert("Select Type of Move");
+   // }
+   var url_string = window.location.href;
+   var url = new URL(url_string);
+   var moverequestid = url.searchParams.get("id");
+     $.ajax({
+       type: "POST",
+       url: "set_notes",
+       data: JSON.stringify({
+         ToDo: toDo,
+         ID: moverequestid
+
+       }),
+       success: function(json) {
+         //console.log(JSON.stringify(json));
+         if (!json.success) {
+           alert(json.message);
+         }
+         else {
+           // showUsers();
+           console.log(JSON.stringify(json));
+           //window.location.replace("confirm.html?id=" + json.id);
+
+         }
+       },
+
+     });
+
+ });
+});
+
+</script>
+
+
 
     <script>
 
@@ -83,13 +87,15 @@
            console.log(JSON.stringify(json));
            console.log(json.data[0].FromZip);
            console.log(json.data[0].ToZip);
+           console.log(json.data[0].ToDo);
            //console.log(json.data[0].MoverName);
-      //THANK YOU!!!//
+
            $("#fromZip").val(json.data[0].FromZip);
            $("#toZip").val(json.data[0].ToZip);
            $("#npeople").val(json.data[0].NumberOfPeople);
            $("#sqfoot").val(json.data[0].SquareFootage);
            $("#nroom").val(json.data[0].NumberOfRooms);
+           $("#note").val(json.data[0].ToDo);
            //$("#mover").val(json.data[0].Name);
            // $("#move-date").val(json.data)
 
@@ -134,25 +140,29 @@
   Moving Company : <input id="mover" size="6" readonly></input><br>
 
 
-  <!-- Trigger/Open The Modal -->
-  <button id="myBtn">Add Notes</button>
+  <!-- Trigger/Add Notes -->
+  <button id="notes">Add Notes</button>
+
+  <script type="text/javascript">
+  $(function(){
+       //hides all divs except the main div onload of page
+       $("#checklist").hide();
+
+       //hides the main div onclick of undergrad button and shows undergrad page
+       $("#notes").click(function(){
+          $("#checklist").toggle();
+       });
+
+   });
+
+  </script>
 
   <button onclick="printpage()">Print this page</button>
 
-
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-
-      <p>Some text for later...</p>
-
-      <span class="close">&times; Close Checklist</span>
+      <div id="checklist" >
+    Notes : <textarea id="note" ></textarea><br>
     </div>
-
-  </div>
-
+<button id="submit">Submit</button>
 
   <script>
   function printpage() {
@@ -161,6 +171,7 @@
   </script>
   </div>
 </div>
+
 <div id="right-panel"></div>
 
     <div id="map"></div>
@@ -189,33 +200,6 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlT_tN3gQgvp0LXwVbNz6z79MokpIOP5U&callback=initMap">
     </script>
 
-    <script>
-    // Get the modal
-    var modal = document.getElementById('myModal');
-
-    // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-    </script>
 
 
 
