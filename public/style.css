@@ -225,7 +225,7 @@ header {
   border-style:ridge;
   /* width: 100%; */
   color: white;
-  background-color: DarkBlue;
+  background-color: #4b5320;
   text-align: center;
   left: 0;
   right: 0;
@@ -382,6 +382,16 @@ ul li.checked::before {
       #toZip {
         width: 40px;
       }
+      #note {
+        width: 1000px;
+        height: 100px;
+        background-size: 20px;
+        border-style: ridge;
+        overflow: scroll;
+        word-wrap: break-word;
+        word-break: break-all;
+        font-weight: bold;
+      }
 
   button {
     outline: none;
@@ -399,7 +409,7 @@ ul li.checked::before {
   }
   #panel {
     visibility: visible;
-    height: 60px;
+    height: 1000px;
     border: none;
     margin: 1px;
 
@@ -423,6 +433,10 @@ ul li.checked::before {
     height: 100%;
     overflow: visible;
 
-
   }
+
+  #checklist {
+    display: block;
+  }
+
 }
