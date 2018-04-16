@@ -14,7 +14,7 @@
         height: 100%;
         margin: 0;
         padding: 0;
-        background-color: white;
+        background-color: DarkBlue;
       }
 
 
@@ -65,6 +65,7 @@ $(function() {
 </script>
 
 
+    </style>
 
     <script>
 
@@ -87,16 +88,26 @@ $(function() {
            console.log(JSON.stringify(json));
            console.log(json.data[0].FromZip);
            console.log(json.data[0].ToZip);
+
            console.log(json.data[0].ToDo);
            //console.log(json.data[0].MoverName);
+
+
+           console.log(json.data[0].MoverName);
+      //THANK YOU!!!//
 
            $("#fromZip").val(json.data[0].FromZip);
            $("#toZip").val(json.data[0].ToZip);
            $("#npeople").val(json.data[0].NumberOfPeople);
            $("#sqfoot").val(json.data[0].SquareFootage);
            $("#nroom").val(json.data[0].NumberOfRooms);
+
            $("#note").val(json.data[0].ToDo);
            //$("#mover").val(json.data[0].Name);
+
+           $("#move-type").val(json.data[0].MoveType);
+           $("#move-comp").val(json.data[0].MoverID);
+
            // $("#move-date").val(json.data)
 
              var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -164,6 +175,16 @@ $(function() {
     </div>
 <button id="submit">Submit</button>
 
+=======
+  Origin: <input id="fromZip" size="5" readonly></input>
+  Destination: <input id="toZip" size="5" readonly></input>
+  Number of People: <input id="npeople" size="2" readonly></input>
+  Number of rooms: <input id="nroom" size="2" readonly></input>
+  Square Footage: <input id="sqfoot" size="4" readonly></input>
+  Move Type: <input id="move-type" readonly></input><br>
+  Company Name: <input id="move-comp" readonly></input>
+  <button onclick="printpage()">Print this page</button>
+
   <script>
   function printpage() {
       window.print();
@@ -176,8 +197,9 @@ $(function() {
 
     <div id="map"></div>
 
-
     <script>
+
+
 
       function calculateAndDisplayRoute(directionsService, directionsDisplay, origin,destination) {
         var selectedMode = document.getElementById('mode').value;
@@ -199,10 +221,5 @@ $(function() {
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlT_tN3gQgvp0LXwVbNz6z79MokpIOP5U&callback=initMap">
     </script>
-
-
-
-
-
   </body>
 </html>

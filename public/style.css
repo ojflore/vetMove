@@ -393,6 +393,53 @@ ul li.checked::before {
         font-weight: bold;
       }
 
+  font-family: 'Roboto','sans-serif';
+  line-height: 20px;
+  margin: 20px;
+  padding-left: 10px;
+  background-color: white;
+  border-style: ridge;
+  height: 60%;
+  width: 50%;
+}
+
+#right-panel i {
+  font-size: 10px;
+}
+#right-panel {
+  float: left;
+  overflow: scroll;
+}
+
+#npeople {
+  width: 10px;
+}
+
+#nroom {
+  width: 10px;
+}
+
+#sqfoot {
+  width: 30px;
+}
+
+#move-type {
+  width: 75px;
+}
+
+#move-comp {
+  width: 125px;
+}
+
+#fromZip {
+  width: 40px;
+}
+
+#toZip {
+  width: 40px;
+}
+
+
   button {
     outline: none;
     text-align: center;

@@ -15,7 +15,55 @@ $(function() {
   var url = new URL(url_string);
   var moverequestid = url.searchParams.get("id");
   console.log("moverequestid: " + moverequestid);
+
+  $("#bell").click(function() {
+   var moverID = $("#bell").val();
+     $.ajax({
+       type: "POST",
+       url: "set_company",
+       data: JSON.stringify({
+         MoverID: moverID,
+         ID: moverequestid
+       }),
+       success: function(json) {
+         //console.log(JSON.stringify(json));
+         if (!json.success) {
+           alert(json.message);
+         }
+         var trucker = url.searchParams.get("trucker");
+         console.log(url.searchParams);
+         if (trucker === "true") {
+           window.location.replace("trucker.html?id=" + moverequestid);
+         }
+         else {
+           window.location.replace("confirm.html?id=" + moverequestid);
+         }
+         // else {
+         //   // showUsers();
+         //   console.log(JSON.stringify(json));
+         //   // window.location.replace("movers.html");
+           // window.location.replace("confirm.html?id=" + json.id);
+         // }
+       },
+       error: function (jqXHR, textStatus, errorThrown) {
+         alert("Request failed!" + textStatus + " " + errorThrown + " " + jqXHR.status + " " + jqXHR.statusText + " " + jqXHR.responseText);
+
+
+      // "AJAXerrorHandler" : function(jqXHR, textStatus, errorThrown){
+      //         $('body').prepend('Error: <ul>'+
+      //             '<li>textStatus: '+textStatus+'</li>'+
+      //             '<li>errorThrown: '+errorThrown+'</li>'+
+      //             '<li>jqXHR.status: '+jqXHR.status+'</li>'+
+      //             '<li>jqXHR.statusText: '+jqXHR.statusText+'</li>'+
+      //             //'<li>jqXHR.responseText: '+jqXHR.responseText+'</li>'+
+      //             '</ul>');
+      //     },
+
+       }
+     });
+ });
 });
+
 </script>
 </head>
   <body>
@@ -36,7 +84,7 @@ $(function() {
              <a class="org-text" href="https://www.getbellhops.com/market/pittsburgh-pennsylvania/?utm_source=GMBlisting&utm_medium=organic">Bellhops</a>
            </th>
            <th>
-             <button type="button" class="save">Select</button><br>
+             <button type="button" id="bell" class="save" value="BellHops">Select</button><br>
            </th>
            <br>
          </tr>
@@ -45,7 +93,7 @@ $(function() {
             <a class="org-text" href="http://www.abceasymoving.com/">ABC Easy Moving</a>
            </th>
            <th>
-             <button type="button" class="save">Select</button><br>
+             <button type="button" id="abc" class="save" value="ABC Easy Moving">Select</button><br>
            </th>
            <br>
          </tr>
@@ -54,7 +102,7 @@ $(function() {
              <a class="org-text" href="http://www.steelcitymovers.com/">Steel City Movers</a>
            </th>
            <th>
-             <button type="button" class="save">Select</button><br>
+             <button type="button" id="steel" class="save" value="Steel City Movers">Select</button><br>
            </th>
          </tr>
        </table>
