@@ -2,7 +2,7 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="style.css"/>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
@@ -16,6 +16,54 @@
         padding: 0;
         background-color: DarkBlue;
       }
+
+
+    </style>
+<script>
+$(function() {
+  // $("div").css("height", $(window).height());
+  // $(​window​).bind("resize",function() {
+  //   $("div").css("height", $(window).height());
+  // });​​​​
+
+  $("#submit").click(function() {
+   var toDo = $("#note").val();
+
+   // var moveType = $("#move-type").val();
+   // else if (!moveType) {
+   //   alert("Select Type of Move");
+   // }
+   var url_string = window.location.href;
+   var url = new URL(url_string);
+   var moverequestid = url.searchParams.get("id");
+     $.ajax({
+       type: "POST",
+       url: "set_notes",
+       data: JSON.stringify({
+         ToDo: toDo,
+         ID: moverequestid
+
+       }),
+       success: function(json) {
+         //console.log(JSON.stringify(json));
+         if (!json.success) {
+           alert(json.message);
+         }
+         else {
+           // showUsers();
+           console.log(JSON.stringify(json));
+           //window.location.replace("confirm.html?id=" + json.id);
+
+         }
+       },
+
+     });
+
+ });
+});
+
+</script>
+
 
     </style>
 
@@ -40,15 +88,26 @@
            console.log(JSON.stringify(json));
            console.log(json.data[0].FromZip);
            console.log(json.data[0].ToZip);
+
+           console.log(json.data[0].ToDo);
+           //console.log(json.data[0].MoverName);
+
+
            console.log(json.data[0].MoverName);
       //THANK YOU!!!//
+
            $("#fromZip").val(json.data[0].FromZip);
            $("#toZip").val(json.data[0].ToZip);
            $("#npeople").val(json.data[0].NumberOfPeople);
            $("#sqfoot").val(json.data[0].SquareFootage);
            $("#nroom").val(json.data[0].NumberOfRooms);
+
+           $("#note").val(json.data[0].ToDo);
+           //$("#mover").val(json.data[0].Name);
+
            $("#move-type").val(json.data[0].MoveType);
            $("#move-comp").val(json.data[0].MoverID);
+
            // $("#move-date").val(json.data)
 
              var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -84,6 +143,39 @@
 <div id="panel">
   <div id="floating-panel">
   <input id="mode" type="hidden" value="DRIVING">Your Move Confirmation</input><br>
+  Origin : <input id="fromZip" size="5" readonly></input>
+  Destination : <input id="toZip" size="5" readonly></input>
+  Number of People : <input id="npeople" size="2" readonly></input>
+  Number of rooms : <input id="nroom" size="2" readonly></input>
+  Square Footage : <input id="sqfoot" size="4" readonly></input>
+  Moving Company : <input id="mover" size="6" readonly></input><br>
+
+
+  <!-- Trigger/Add Notes -->
+  <button id="notes">Add Notes</button>
+
+  <script type="text/javascript">
+  $(function(){
+       //hides all divs except the main div onload of page
+       $("#checklist").hide();
+
+       //hides the main div onclick of undergrad button and shows undergrad page
+       $("#notes").click(function(){
+          $("#checklist").toggle();
+       });
+
+   });
+
+  </script>
+
+  <button onclick="printpage()">Print this page</button>
+
+      <div id="checklist" >
+    Notes : <textarea id="note" ></textarea><br>
+    </div>
+<button id="submit">Submit</button>
+
+=======
   Origin: <input id="fromZip" size="5" readonly></input>
   Destination: <input id="toZip" size="5" readonly></input>
   Number of People: <input id="npeople" size="2" readonly></input>
@@ -100,6 +192,7 @@
   </script>
   </div>
 </div>
+
 <div id="right-panel"></div>
 
     <div id="map"></div>

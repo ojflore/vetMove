@@ -24,6 +24,8 @@ http.createServer(function(req, res) {
     else if (path === "/allmoverequest") {
       allMoveRequest(req, res);
     }
+    else if (path === "/set_notes") {
+      setNotesRequest(req, res);
     else if (path === "/set_company") {
       setCompanyRequest(req, res);
     }
@@ -206,7 +208,8 @@ function addMoveRequest(req, res) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      conn.query("INSERT INTO MoveRequest (FromZip,ToZip,NumberOfPeople,SquareFootage,NumberOfRooms,MoveType, MoverID) VALUE (?,?,?,?,?,?,?)", [injson.FromZip, injson.ToZip, injson.NumberOfPeople, injson.SquareFootage, injson.NumberOfRooms, injson.MoveType, injson.MoverID], function(err, rows, fields) {
+      conn.query("INSERT INTO MoveRequest (FromZip,ToZip,NumberOfPeople,SquareFootage,NumberOfRooms,ToDo) VALUE (?,?,?,?,?,?)", [injson.FromZip, injson.ToZip, injson.NumberOfPeople, injson.SquareFootage, injson.NumberOfRooms, injson.ToDo], function(err, rows, fields) {
+      //conn.query("INSERT INTO MoveRequest (FromZip,ToZip,NumberOfPeople,SquareFootage,NumberOfRooms,MoveType, MoverID) VALUE (?,?,?,?,?,?,?)", [injson.FromZip, injson.ToZip, injson.NumberOfPeople, injson.SquareFootage, injson.NumberOfRooms, injson.MoveType, injson.MoverID], function(err, rows, fields) {
         // console.log(JSON.stringify(rows.insertId));
         // build json result object
         var outjson = {};
@@ -262,7 +265,8 @@ function allMoveRequest(req, res) {
   });
 }
 
-function setCompanyRequest(req, res) {
+function setNotesRequest(req, res) {
+//function setCompanyRequest(req, res) {
   var body = "";
   req.on("data", function (data) {
     body += data;
@@ -281,7 +285,8 @@ function setCompanyRequest(req, res) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      conn.query("UPDATE MoveRequest SET MoverID = ? WHERE ID = ?", [injson.MoverID, injson.ID], function(err, rows, fields) {
+      conn.query("UPDATE MoveRequest SET ToDo=? WHERE ID=?", [injson.ToDo, injson.ID], function(err, rows, fields) {
+      //conn.query("UPDATE MoveRequest SET MoverID = ? WHERE ID = ?", [injson.MoverID, injson.ID], function(err, rows, fields) {
         // console.log(JSON.stringify(rows.insertId));
         // build json result object
         var outjson = {};

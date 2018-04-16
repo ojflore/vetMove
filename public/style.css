@@ -225,7 +225,7 @@ header {
   border-style:ridge;
   /* width: 100%; */
   color: white;
-  background-color: DarkBlue;
+  background-color: #4b5320;
   text-align: center;
   left: 0;
   right: 0;
@@ -343,6 +343,56 @@ ul li.checked::before {
 }
 
 #right-panel {
+        font-family: 'Roboto','sans-serif';
+        line-height: 20px;
+        margin: 20px;
+        padding-left: 10px;
+        background-color: white;
+        border-style: ridge;
+        height: 60%;
+        width: 50%;
+      }
+
+      #right-panel i {
+        font-size: 10px;
+      }
+      #right-panel {
+        float: left;
+        overflow: scroll;
+      }
+
+      #npeople {
+        width: 10px;
+      }
+
+      #nroom {
+        width: 10px;
+      }
+
+      #sqfoot {
+        width: 30px;
+      }
+
+      #mover {
+        width: 40px;
+      }
+      #fromZip {
+        width: 40px;
+      }
+      #toZip {
+        width: 40px;
+      }
+      #note {
+        width: 1000px;
+        height: 100px;
+        background-size: 20px;
+        border-style: ridge;
+        overflow: scroll;
+        word-wrap: break-word;
+        word-break: break-all;
+        font-weight: bold;
+      }
+
   font-family: 'Roboto','sans-serif';
   line-height: 20px;
   margin: 20px;
@@ -406,7 +456,7 @@ ul li.checked::before {
   }
   #panel {
     visibility: visible;
-    height: 60px;
+    height: 1000px;
     border: none;
     margin: 1px;
 
@@ -430,6 +480,10 @@ ul li.checked::before {
     height: 100%;
     overflow: visible;
 
-
   }
+
+  #checklist {
+    display: block;
+  }
+
 }
