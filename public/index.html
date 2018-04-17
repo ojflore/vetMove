@@ -7,11 +7,9 @@
 <link rel="stylesheet" type="text/css" href="stylevetmove.css"/>
 <link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet"/>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="jquery-3.3.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>vetMove</title>
 </head>
@@ -43,9 +41,9 @@
               <h4 class="need">I need:</h4>
                 <form>
                   <div id="move">
-                    <input type="radio" id="radio1" name="radio" checked="checked" value="Truck"><label for="radio1">A truck</label><br>
-                    <input type="radio" id="radio2" name="radio" value="Movers"><label for="radio2">Movers</label><br>
-                    <input type="radio" id="radio3" name="radio" value="Both"><label for="radio3">Both</label>
+                    <input type="radio" id="radio1" name="radio" checked="checked" value="Truck Needed"><label for="radio1">A truck</label><br>
+                    <input type="radio" id="radio2" name="radio" value="Movers Needed"><label for="radio2">Movers</label><br>
+                    <input type="radio" id="radio3" name="radio" value="Movers and Truck"><label for="radio3">Both</label>
                   </div>
                 </form>
             </div>
@@ -132,9 +130,9 @@
                if (!json.success) {
                  alert(json.message);
                }
-               if (moveType === "Movers" || moveType === "Both") {
+               if (moveType === "Movers Needed" || moveType === "Movers and Truck") {
 
-                  window.location.replace("movers.html?id=" + json.id + "&trucker=" + (moveType === "Both"));
+                  window.location.replace("movers.html?id=" + json.id + "&trucker=" + (moveType === "Movers and Truck"));
                 }
                 else {
                   window.location.replace("trucker.html?id=" + json.id);

@@ -16,99 +16,121 @@ $(function() {
   var moverequestid = url.searchParams.get("id");
   console.log("moverequestid: " + moverequestid);
 
-  $("#bell").click(function() {
-   var moverID = $("#bell").val();
-     $.ajax({
-       type: "POST",
-       url: "set_company",
-       data: JSON.stringify({
-         MoverID: moverID,
-         ID: moverequestid
-       }),
-       success: function(json) {
-         //console.log(JSON.stringify(json));
-         if (!json.success) {
-           alert(json.message);
-         }
-         var trucker = url.searchParams.get("trucker");
-         console.log(url.searchParams);
-         if (trucker === "true") {
-           window.location.replace("trucker.html?id=" + moverequestid);
-         }
-         else {
-           window.location.replace("confirm.html?id=" + moverequestid);
-         }
-         // else {
-         //   // showUsers();
-         //   console.log(JSON.stringify(json));
-         //   // window.location.replace("movers.html");
-           // window.location.replace("confirm.html?id=" + json.id);
-         // }
-       },
-       error: function (jqXHR, textStatus, errorThrown) {
-         alert("Request failed!" + textStatus + " " + errorThrown + " " + jqXHR.status + " " + jqXHR.statusText + " " + jqXHR.responseText);
+  function setMover(moverID) {
+      $.ajax({
+        type: "POST",
+        url: "set_company",
+        data: JSON.stringify({
+          MoverID: moverID,
+          ID: moverequestid
+        }),
+        success: function(json) {
+          //console.log(JSON.stringify(json));
+          if (!json.success) {
+            alert(json.message);
+          }
+          var trucker = url.searchParams.get("trucker");
+          console.log(url.searchParams);
+          if (trucker === "true") {
+            window.location.replace("trucker.html?id=" + moverequestid);
+          }
+          else {
+            window.location.replace("confirm.html?id=" + moverequestid);
+          }
+          // else {
+          //   // showUsers();
+          //   console.log(JSON.stringify(json));
+          //   // window.location.replace("movers.html");
+            // window.location.replace("confirm.html?id=" + json.id);
+          // }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert("Request failed!" + textStatus + " " + errorThrown + " " + jqXHR.status + " " + jqXHR.statusText + " " + jqXHR.responseText);
 
 
-      // "AJAXerrorHandler" : function(jqXHR, textStatus, errorThrown){
-      //         $('body').prepend('Error: <ul>'+
-      //             '<li>textStatus: '+textStatus+'</li>'+
-      //             '<li>errorThrown: '+errorThrown+'</li>'+
-      //             '<li>jqXHR.status: '+jqXHR.status+'</li>'+
-      //             '<li>jqXHR.statusText: '+jqXHR.statusText+'</li>'+
-      //             //'<li>jqXHR.responseText: '+jqXHR.responseText+'</li>'+
-      //             '</ul>');
-      //     },
+       // "AJAXerrorHandler" : function(jqXHR, textStatus, errorThrown){
+       //         $('body').prepend('Error: <ul>'+
+       //             '<li>textStatus: '+textStatus+'</li>'+
+       //             '<li>errorThrown: '+errorThrown+'</li>'+
+       //             '<li>jqXHR.status: '+jqXHR.status+'</li>'+
+       //             '<li>jqXHR.statusText: '+jqXHR.statusText+'</li>'+
+       //             //'<li>jqXHR.responseText: '+jqXHR.responseText+'</li>'+
+       //             '</ul>');
+       //     },
 
-       }
-     });
- });
+        }
+      });
+  }
+
+  $("#two-men").click(function() {
+    var twoMen = $("#two-men").val();
+    setMover(twoMen);
+  });
+  $("#mayflower").click(function() {
+     var mayflower = $("#mayflower").val();
+     setMover(mayflower);
+  });
+  $("#united").click(function() {
+    var united = $("#united").val();
+    setMover(united);
+  });
+  $("#pgh").click(function() {
+    var pgh = $("#pgh").val();
+    setMover(pgh);
+  });
 });
 
 </script>
 </head>
-  <body>
+<body>
     <!-- <div class="ctn"> -->
-      <div class="header">
-        <img class="emblem" src="emblem.png"/>
-        <img class=logo src="logo.png">
-      </div>
-      <div class="landing">
-
-        <div class="row justify-content-center">
-
-          <center>
-     <div class="content">
-       <table class="main-box">
-         <tr>
-           <th>
-             <a class="org-text" href="https://www.getbellhops.com/market/pittsburgh-pennsylvania/?utm_source=GMBlisting&utm_medium=organic">Bellhops</a>
-           </th>
-           <th>
-             <button type="button" id="bell" class="save" value="BellHops">Select</button><br>
-           </th>
-           <br>
-         </tr>
-         <tr>
-           <th>
-            <a class="org-text" href="http://www.abceasymoving.com/">ABC Easy Moving</a>
-           </th>
-           <th>
-             <button type="button" id="abc" class="save" value="ABC Easy Moving">Select</button><br>
-           </th>
-           <br>
-         </tr>
-         <tr>
-           <th>
-             <a class="org-text" href="http://www.steelcitymovers.com/">Steel City Movers</a>
-           </th>
-           <th>
-             <button type="button" id="steel" class="save" value="Steel City Movers">Select</button><br>
-           </th>
-         </tr>
-       </table>
-     </div>
-   </center>
-
-
+  <div class="header">
+    <img class="emblem" src="images/emblem.png"/>
+    <img class=logo src="images/logo.png">
+  </div>
+  <div class="landing">
+    <div class="row justify-content-center">
+      <center>
+       <!-- <div class="content"> -->
+         <table class="main-box">
+           <h1 class="select-text">Select a Moving Company</h1>
+           <tr>
+             <th>
+               <a class="org-text" href="https://twomenandatruck.com/" target="_blank" title="Go to Two Men and a Truck">Two Men and a Truck</a>
+             </th>
+             <th>
+               <button type="button" id="two-men" class="save" value="1">Select</button><br>
+             </th>
+             <br>
+           </tr>
+           <tr>
+             <th>
+              <a class="org-text" href="https://www.mayflower.com/" target="_blank" title="Go to Mayflower Transit">Mayflower Transit</a>
+             </th>
+             <th>
+               <button type="button" id="mayflower" class="save" value="2">Select</button><br>
+             </th>
+             <br>
+           </tr>
+           <tr>
+             <th>
+               <a class="org-text" href="https://www.unitedvanlines.com/" target="_blank" title="Go to United Van Lines">United Van Lines</a>
+             </th>
+             <th>
+               <button type="button" id="united" class="save" value="3">Select</button><br>
+             </th>
+           </tr>
+           <tr>
+             <th>
+               <a class="org-text" href="http://www.pghmovingco.com/contact.html" target="_blank" title="Go to Pgh Moving Company">Pgh Moving Company</a>
+             </th>
+             <th>
+               <button type="button" id="pgh" class="save" value="4">Select</button><br>
+             </th>
+           </tr>
+         </table>
+       </div>
+     </center>
+   </div>
   </body>
 </html>
