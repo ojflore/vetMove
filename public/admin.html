@@ -7,11 +7,9 @@
 <link rel="stylesheet" type="text/css" href="admin.css"/>
 <link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet"/>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="jquery-3.3.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
  $(function() {
@@ -29,7 +27,7 @@
        var results = json.data;
        for (var i = 0; i < results.length; i++) {
          var body = $(document.body);
-         $("#moveRequest").append("<tr><td>" + results[i].MoveRequestID + "</td><td>" + (results[i].MoveType || "") + "</td><td>" + (results[i].MoverID || "") + "</td><td>" + results[i].FromZip + "</td><td>" + results[i].ToZip + "</td><td>" + results[i].NumberOfPeople + "</td><td>" + results[i].SquareFootage + "</td><td>" + results[i].NumberOfRooms + "</td>");
+         $("#moveRequest").append("<tr><td>" + results[i].MoveRequestID + "</td><td>" + (results[i].MoveType || "") + "</td><td>" + (results[i].CompanyID || "") + "</td><td>" + results[i].FromZip + "</td><td>" + results[i].ToZip + "</td><td>" + results[i].NumberOfPeople + "</td><td>" + results[i].SquareFootage + "</td><td>" + results[i].NumberOfRooms + "</td>");
          //console.log(results[i].MoveType === null ? "" : results[i].MoveType); //if null show empty string
          console.log(results[i].MoveType || ""); //if null show empty string
        }
@@ -68,7 +66,7 @@
       <tr>
         <th>Move Request ID</th>
         <th>Move Type</th>
-        <th>Mover ID</th>
+        <th>Company</th>
         <th>Origin</th>
         <th>Destination</th>
         <th># of People</th>

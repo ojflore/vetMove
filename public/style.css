@@ -101,8 +101,8 @@ ul li.checked::before {
 }
 
 #panel {
-  font-family: 'BenchNine', sans-serif;
-  font-size: 1.3em;
+  font-family: 'Roboto','sans-serif';
+  font-size: 1.5em;
   width: 95%;
   height: auto;
   float: right;
@@ -139,7 +139,7 @@ ul li.checked::before {
       }
 
       #right-panel{
-        font-size: 10px;
+        font-size: 1.2em;
       }
       #right-panel {
         float: left;
@@ -147,27 +147,42 @@ ul li.checked::before {
       }
 
       #npeople {
-        width: 10px;
+        font-size: .7em;
+        /* width: 10px; */
       }
 
       #nroom {
+        font-size: .7em;
         /* width: 10px; */
       }
 
       #sqfoot {
-        width: 30px;
+        font-size: .7em;
+        /* width: 30px; */
       }
 
       #mover {
-        width: 40px;
+        font-size: .7em;
+        /* width: 40px; */
       }
       #fromZip {
-        width: 40px;
+        font-size: .7em;
+        /* width: 40px; */
       }
       #toZip {
-        width: 40px;
-        font-size: 1.2em
-        font-weight: bold;
+        /* width: 40px; */
+        font-size: .7em;
+        /* font-weight: bold; */
+      }
+      #move-comp {
+        /* width: 40px; */
+        font-size: .7em;
+        /* font-weight: bold; */
+      }
+      #move-type {
+        /* width: 40px; */
+        font-size: .7em;
+        /* font-weight: bold; */
       }
 
       #note {

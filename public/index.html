@@ -25,36 +25,36 @@
 <!-- left-side of input box -->
           <div class="col-md-4">
 <!-- origin input field -->
-            <label>Origin</label><br>
+            <label class="headers">Origin</label><br>
               <input type="text" id="old-city"><br>
                 <label class="zip">Zip Code</label><br>
 
 <!-- destination input field -->
-            <label>Destination</label><br>
+            <label class="headers">Destination</label><br>
               <input type="text" id="new-city"><br>
                 <label class="zip">Zip Code</label><br>
               </div>
 
 <!-- Checkboxradio -->
             <div class="row-bottom">
-              <label>Type of Move</label><br>
+              <label class="headers">Type of Move</label><br><br>
               <h4 class="need">I need:</h4>
                 <form>
                   <div id="move">
                     <input type="radio" id="radio1" name="radio" checked="checked" value="Truck Needed"><label for="radio1">A truck</label><br>
                     <input type="radio" id="radio2" name="radio" value="Movers Needed"><label for="radio2">Movers</label><br>
-                    <input type="radio" id="radio3" name="radio" value="Movers and Truck"><label for="radio3">Both</label>
+                    <!-- <input type="radio" id="radio3" name="radio" value="Movers and Truck"><label for="radio3">Both</label> -->
                   </div>
                 </form>
             </div>
 <!-- right-side of input box  -->
           <div class="col-md-4">
 <!-- details input starts here -->
-            <label>Details</label>
+            <label class="headers">Details</label>
             <br>
-              <label># of People Moving: </label><input type="text" id="people">
+              <label class="people-moving"># of People Moving: </label><input type="text" id="people">
                <br>
-               <label class="bdrm_input"># of Bedrooms: </label>
+               <label class="bdrm-input"># of Bedrooms: </label>
                  <select id="bedrooms">
                    <option>Select</option>
                    <option>Studio - 1 bdrm</option>
@@ -132,10 +132,10 @@
                }
                if (moveType === "Movers Needed" || moveType === "Movers and Truck") {
 
-                  window.location.replace("movers.html?id=" + json.id + "&trucker=" + (moveType === "Movers and Truck"));
+                  window.location.assign("movers.html?id=" + json.id + "&trucker=" + (moveType === "Movers and Truck"));
                 }
                 else {
-                  window.location.replace("trucker.html?id=" + json.id);
+                  window.location.assign("trucker.html?id=" + json.id);
                 }
                // else {
                //   // showUsers();

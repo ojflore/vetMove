@@ -16,12 +16,12 @@ $(function() {
   var moverequestid = url.searchParams.get("id");
   console.log("moverequestid: " + moverequestid);
 
-  function setMover(moverID) {
+  function setCompany(companyID) {
       $.ajax({
         type: "POST",
         url: "set_company",
         data: JSON.stringify({
-          MoverID: moverID,
+          CompanyID: companyID,
           ID: moverequestid
         }),
         success: function(json) {
@@ -32,10 +32,10 @@ $(function() {
           var trucker = url.searchParams.get("trucker");
           console.log(url.searchParams);
           if (trucker === "true") {
-            window.location.replace("trucker.html?id=" + moverequestid);
+            window.location.assign("trucker.html?id=" + moverequestid);
           }
           else {
-            window.location.replace("confirm.html?id=" + moverequestid);
+            window.location.assign("confirm.html?id=" + moverequestid);
           }
           // else {
           //   // showUsers();
@@ -63,20 +63,19 @@ $(function() {
   }
 
   $("#two-men").click(function() {
-    var twoMen = $("#two-men").val();
-    setMover(twoMen);
+    setCompany(1);
   });
   $("#mayflower").click(function() {
-     var mayflower = $("#mayflower").val();
-     setMover(mayflower);
+     // var mayflower = $("#mayflower").val();
+     setCompany(2);
   });
   $("#united").click(function() {
-    var united = $("#united").val();
-    setMover(united);
+    // var united = $("#united").val();
+    setCompany(3);
   });
   $("#pgh").click(function() {
-    var pgh = $("#pgh").val();
-    setMover(pgh);
+    // var pgh = $("#pgh").val();
+    setCompany(4);
   });
 });
 
