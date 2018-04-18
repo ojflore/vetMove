@@ -4,51 +4,131 @@
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="moverstyle.css">
+<script
+ src="https://code.jquery.com/jquery-3.3.1.min.js"
+ integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+ crossorigin="anonymous"></script>
 <title>vetMove</title>
+<script>
+$(function() {
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var moverequestid = url.searchParams.get("id");
+  console.log("moverequestid: " + moverequestid);
+
+  function setCompany(companyID) {
+      $.ajax({
+        type: "POST",
+        url: "set_company",
+        data: JSON.stringify({
+          CompanyID: companyID,
+          ID: moverequestid
+        }),
+        success: function(json) {
+          //console.log(JSON.stringify(json));
+          if (!json.success) {
+            alert(json.message);
+          }
+          var trucker = url.searchParams.get("trucker");
+          console.log(url.searchParams);
+          if (trucker === "true") {
+            window.location.assign("trucker.html?id=" + companyequestid);
+          }
+          else {
+            window.location.assign("confirm.html?id=" + moverequestid);
+          }
+          // else {
+          //   // showUsers();
+          //   console.log(JSON.stringify(json));
+          //   // window.location.replace("movers.html");
+            // window.location.replace("confirm.html?id=" + json.id);
+          // }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          alert("Request failed!" + textStatus + " " + errorThrown + " " + jqXHR.status + " " + jqXHR.statusText + " " + jqXHR.responseText);
+
+
+       // "AJAXerrorHandler" : function(jqXHR, textStatus, errorThrown){
+       //         $('body').prepend('Error: <ul>'+
+       //             '<li>textStatus: '+textStatus+'</li>'+
+       //             '<li>errorThrown: '+errorThrown+'</li>'+
+       //             '<li>jqXHR.status: '+jqXHR.status+'</li>'+
+       //             '<li>jqXHR.statusText: '+jqXHR.statusText+'</li>'+
+       //             //'<li>jqXHR.responseText: '+jqXHR.responseText+'</li>'+
+       //             '</ul>');
+       //     },
+
+        }
+      });
+  }
+
+  $("#uhaul").click(function() {
+    setCompany(5);
+  });
+  $("#penske").click(function() {
+     // var mayflower = $("#mayflower").val();
+     setCompany(6);
+  });
+  $("#enterprise").click(function() {
+    // var united = $("#united").val();
+    setCompany(7);
+  });
+  $("#budget").click(function() {
+    // var pgh = $("#pgh").val();
+    setCompany(8);
+  });
+});
+
+</script>
 </head>
-  <body>
+<body>
     <!-- <div class="ctn"> -->
-      <div class="header">
-        <img class="emblem" src="emblem.png"/>
-        <img class=logo src="logo.png">
-      </div>
-      <div class="landing">
-
-        <div class="row justify-content-center">
-
-          <center>
-     <div class="content">
-       <table class="main-box">
-         <tr>
-           <th>
-             <a class="org-text" href="https://www.uhaul.com">Uhaul</a>
-           </th>
-           <th>
-             <button type="button" class="save">Select</button><br>
-           </th>
-           <br>
-         </tr>
-         <tr>
-           <th>
-            <a class="org-text" href="http://www.twomenandatruck.com/">Two Men and A Truck</a>
-           </th>
-           <th>
-             <button type="button" class="save">Select</button><br>
-           </th>
-           <br>
-         </tr>
-         <tr>
-           <th>
-             <a class="org-text" href="http://www.pensketruckrental.com/">Penske</a>
-           </th>
-           <th>
-             <button type="button" class="save">Select</button><br>
-           </th>
-         </tr>
-       </table>
-     </div>
-   </center>
-
-
+  <div class="header">
+    <img class="emblem" src="images/emblem.png"/>
+    <img class=logo src="images/logo.png">
+  </div>
+  <div class="landing">
+    <div class="row justify-content-center">
+      <center>
+       <!-- <div class="content"> -->
+         <table class="main-box">
+           <h1 class="select-text">Select a Rental Truck Company</h1>
+           <tr>
+             <th>
+               <a class="org-text" href="https://www.uhaul.com/Trucks/" target="_blank" title="Go to Uhaul Truck Rental">Uhaul Truck Rental</a>
+             </th>
+             <th>
+               <button type="button" id="uhaul" class="save" value="1">Select</button><br>
+             </th>
+             <br>
+           </tr>
+           <tr>
+             <th>
+              <a class="org-text" href="https://www.pensketruckrental.com/" target="_blank" title="Go to Penske Truck Rental">Penske Truck Rental</a>
+             </th>
+             <th>
+               <button type="button" id="penske" class="save" value="2">Select</button><br>
+             </th>
+             <br>
+           </tr>
+           <tr>
+             <th>
+               <a class="org-text" href="https://www.enterprisetrucks.com/truckrental/en_US.html" target="_blank" title="Go to Enterprise Truck Rental">Enterprise Truck Rental</a>
+             </th>
+             <th>
+               <button type="button" id="enterprise" class="save" value="3">Select</button><br>
+             </th>
+           </tr>
+           <tr>
+             <th>
+               <a class="org-text" href="https://www.budgettruck.com/" target="_blank" title="Go to Budget Truck Rental">Budget Truck Rental</a>
+             </th>
+             <th>
+               <button type="button" id="budget" class="save" value="4">Select</button><br>
+             </th>
+           </tr>
+         </table>
+       </div>
+     </center>
+   </div>
   </body>
-</html>

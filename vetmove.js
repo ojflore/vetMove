@@ -199,7 +199,7 @@ function moveRequest(req, res) {
     // query the database ****This pulls the ID User from the database
     console.log(req.url.split("?")[1].split("=")[1]);
     // console.log(req.url)
-    conn.query("SELECT * FROM MoveRequest LEFT JOIN Mover ON MoveRequest.MoverID = Mover.ID WHERE MoveRequest.ID = ?;", [req.url.split("?")[1].split("=")[1]], function(err, rows, fields) {
+    conn.query("SELECT * FROM MoveRequest LEFT JOIN Company ON MoveRequest.CompanyID = Company.ID WHERE MoveRequest.ID = ?;", [req.url.split("?")[1].split("=")[1]], function(err, rows, fields) {
       // build json result object
       var outjson = {};
       if (err) {
@@ -239,7 +239,7 @@ function addMoveRequest(req, res) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      conn.query("INSERT INTO MoveRequest (FromZip,ToZip,NumberOfPeople,SquareFootage,NumberOfRooms,MoveType, MoverID) VALUE (?,?,?,?,?,?,?)", [injson.FromZip, injson.ToZip, injson.NumberOfPeople, injson.SquareFootage, injson.NumberOfRooms, injson.MoveType, injson.MoverID], function(err, rows, fields) {
+      conn.query("INSERT INTO MoveRequest (FromZip,ToZip,NumberOfPeople,SquareFootage,NumberOfRooms,MoveType,CompanyID) VALUE (?,?,?,?,?,?,?)", [injson.FromZip, injson.ToZip, injson.NumberOfPeople, injson.SquareFootage, injson.NumberOfRooms, injson.MoveType, injson.CompanyID], function(err, rows, fields) {
         // console.log(JSON.stringify(rows.insertId));
         // build json result object
         var outjson = {};
@@ -273,7 +273,7 @@ function allMoveRequest(req, res) {
     // query the database ****This pulls the ID User from the database
     // console.log(req.url.split("?")[1].split("=")[1]);
     // console.log(req.url)
-    conn.query("SELECT MoveRequest.ID as MoveRequestID, Mover.ID as MoverID, MoveRequest.FromZip, MoveRequest.ToZip, MoveRequest.NumberOfPeople, MoveRequest.SquareFootage, MoveRequest.NumberOfRooms, MoveRequest.Distance FROM MoveRequest LEFT JOIN Mover ON MoveRequest.MoverID = Mover.ID;", function(err, rows, fields)  {
+    conn.query("SELECT MoveRequest.ID as MoveRequestID, Company.ID as CompanyID, MoveRequest.FromZip, MoveRequest.ToZip, MoveRequest.NumberOfPeople, MoveRequest.SquareFootage, MoveRequest.NumberOfRooms, MoveRequest.Distance FROM MoveRequest LEFT JOIN Company ON MoveRequest.CompanyID = Company.ID;", function(err, rows, fields)  {
       // build json result object
       var outjson = {};
       if (err) {
@@ -314,7 +314,7 @@ function setCompanyRequest(req, res) {
         console.error("ERROR: cannot connect: " + e);
         return;
       }
-      conn.query("UPDATE MoveRequest SET MoverID=? WHERE ID=?", [injson.MoverID, injson.ID], function(err, rows, fields) {
+      conn.query("UPDATE MoveRequest SET CompanyID=? WHERE ID=?", [injson.CompanyID, injson.ID], function(err, rows, fields) {
         // console.log(JSON.stringify(rows.insertId));
         // build json result object
         var outjson = {};
