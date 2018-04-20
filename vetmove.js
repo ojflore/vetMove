@@ -273,7 +273,7 @@ function allMoveRequest(req, res) {
     // query the database ****This pulls the ID User from the database
     // console.log(req.url.split("?")[1].split("=")[1]);
     // console.log(req.url)
-    conn.query("SELECT MoveRequest.ID as MoveRequestID, Company.ID as CompanyID, MoveRequest.FromZip, MoveRequest.ToZip, MoveRequest.NumberOfPeople, MoveRequest.SquareFootage, MoveRequest.NumberOfRooms, MoveRequest.Distance FROM MoveRequest LEFT JOIN Company ON MoveRequest.CompanyID = Company.ID;", function(err, rows, fields)  {
+    conn.query("SELECT MoveRequest.ID as MoveRequestID, MoveRequest.MoveType, MoverName as MoverName, MoveRequest.FromZip, MoveRequest.ToZip, MoveRequest.NumberOfPeople, MoveRequest.SquareFootage, MoveRequest.NumberOfRooms, MoveRequest.Distance FROM MoveRequest LEFT JOIN Company ON MoveRequest.CompanyID = Company.ID;", function(err, rows, fields)  {
       // build json result object
       var outjson = {};
       if (err) {

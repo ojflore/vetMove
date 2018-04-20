@@ -27,7 +27,7 @@
        var results = json.data;
        for (var i = 0; i < results.length; i++) {
          var body = $(document.body);
-         $("#moveRequest").append("<tr><td>" + results[i].MoveRequestID + "</td><td>" + (results[i].MoveType || "") + "</td><td>" + (results[i].CompanyID || "") + "</td><td>" + results[i].FromZip + "</td><td>" + results[i].ToZip + "</td><td>" + results[i].NumberOfPeople + "</td><td>" + results[i].SquareFootage + "</td><td>" + results[i].NumberOfRooms + "</td>");
+         $("#moveRequest").append("<tr><td>" + results[i].MoveRequestID + "</td><td>" + (results[i].MoveType || "") + "</td><td>" + (results[i].MoverName || "") + "</td><td>" + results[i].FromZip + "</td><td>" + results[i].ToZip + "</td><td>" + results[i].NumberOfPeople + "</td><td>" + results[i].SquareFootage + "</td><td>" + results[i].NumberOfRooms + "</td>");
          //console.log(results[i].MoveType === null ? "" : results[i].MoveType); //if null show empty string
          console.log(results[i].MoveType || ""); //if null show empty string
        }
