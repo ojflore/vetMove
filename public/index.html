@@ -7,11 +7,9 @@
 <link rel="stylesheet" type="text/css" href="stylevetmove.css"/>
 <link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet"/>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="jquery-3.3.1.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>vetMove</title>
 </head>
@@ -27,36 +25,36 @@
 <!-- left-side of input box -->
           <div class="col-md-4">
 <!-- origin input field -->
-            <label>Origin</label><br>
+            <label class="headers">Origin</label><br>
               <input type="text" id="old-city"><br>
                 <label class="zip">Zip Code</label><br>
 
 <!-- destination input field -->
-            <label>Destination</label><br>
+            <label class="headers">Destination</label><br>
               <input type="text" id="new-city"><br>
                 <label class="zip">Zip Code</label><br>
               </div>
 
 <!-- Checkboxradio -->
             <div class="row-bottom">
-              <label>Type of Move</label><br>
+              <label class="headers">Type of Move</label><br><br>
               <h4 class="need">I need:</h4>
                 <form>
                   <div id="move">
-                    <input type="radio" id="radio1" name="radio" checked="checked" value="truck"><label for="radio1">A truck</label><br>
-                    <input type="radio" id="radio2" name="radio" value="movers"><label for="radio2">Movers</label><br>
-                    <input type="radio" id="radio3" name="radio" value="both"><label for="radio3">Both</label>
+                    <input type="radio" id="radio1" name="radio" checked="checked" value="Truck Needed"><label for="radio1">A truck</label><br>
+                    <input type="radio" id="radio2" name="radio" value="Movers Needed"><label for="radio2">Movers</label><br>
+                    <!-- <input type="radio" id="radio3" name="radio" value="Movers and Truck"><label for="radio3">Both</label> -->
                   </div>
                 </form>
             </div>
 <!-- right-side of input box  -->
           <div class="col-md-4">
 <!-- details input starts here -->
-            <label>Details</label>
+            <label class="headers">Details</label>
             <br>
-              <label># of People Moving: </label><input type="text" id="people">
+              <label class="people-moving"># of People Moving: </label><input type="text" id="people">
                <br>
-               <label class="bdrm_input"># of Bedrooms: </label>
+               <label class="bdrm-input"># of Bedrooms: </label>
                  <select id="bedrooms">
                    <option>Select</option>
                    <option>Studio - 1 bdrm</option>
@@ -95,7 +93,7 @@
         $("#submit").click(function() {
          var fromZip = $("#old-city").val();
          var toZip = $("#new-city").val();
-         var moveNeeds = $("input[name=radio]:checked").val();
+         var moveType = $("input[name=radio]:checked").val();
          var numberOfPeople = $("#people").val();
          var squareFootage = $("#sqft").val();
          var numberOfRooms = $("#bedrooms").val();
@@ -125,18 +123,19 @@
                NumberOfPeople: numberOfPeople,
                SquareFootage: squareFootage,
                NumberOfRooms: numberOfRooms,
-               Movername: moveNeeds
+               MoveType: moveType
              }),
              success: function(json) {
                //console.log(JSON.stringify(json));
                if (!json.success) {
                  alert(json.message);
                }
-               if (moveNeeds === "movers" || moveNeeds === "both") {
-                  window.location.replace("movers.html?id=" + json.id);
+               if (moveType === "Movers Needed" || moveType === "Movers and Truck") {
+
+                  window.location.assign("movers.html?id=" + json.id + "&trucker=" + (moveType === "Movers and Truck"));
                 }
                 else {
-                  window.location.replace("trucker.html?id=" + json.id);
+                  window.location.assign("trucker.html?id=" + json.id);
                 }
                // else {
                //   // showUsers();

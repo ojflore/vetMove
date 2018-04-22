@@ -3,8 +3,14 @@
 <head>
 <meta charset="utf-8">
 <title>Vetmove Admin</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="admin.css"/>
-<script src="jquery-3.3.1.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet"/>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
  $(function() {
    var url_string = window.location.href;
@@ -21,12 +27,9 @@
        var results = json.data;
        for (var i = 0; i < results.length; i++) {
          var body = $(document.body);
-         // body.append(results[i].ID + " " + results[i].FromZip + "<br>");
-         // $("#peeps").append(json.data[0].NumberOfPeople);
-         // $("#sqft").append(json.data[0].SquareFootage);
-         // $("#room").append(json.data[0].NumberOfRooms);
-         // $("#mover").append(json.data[0].Name);
-         $("#moveRequest").append("<tr><td>" + results[i].MoveRequestID + "</td><td>" + results[i].MoverID + "</td><td>" + results[i].FromZip + "</td><td>" + results[i].ToZip + "</td><td>" + results[i].NumberOfPeople + "</td><td>" + results[i].SquareFootage + "</td><td>" + results[i].NumberOfRooms + "</td><td>" + results[i].Distance + "</td></tr>");
+         $("#moveRequest").append("<tr><td>" + results[i].MoveRequestID + "</td><td>" + (results[i].MoveType || "") + "</td><td>" + (results[i].CompanyID || "") + "</td><td>" + results[i].FromZip + "</td><td>" + results[i].ToZip + "</td><td>" + results[i].NumberOfPeople + "</td><td>" + results[i].SquareFootage + "</td><td>" + results[i].NumberOfRooms + "</td>");
+         //console.log(results[i].MoveType === null ? "" : results[i].MoveType); //if null show empty string
+         console.log(results[i].MoveType || ""); //if null show empty string
        }
      },
      error: function (textStatus, errorThrown) {
@@ -34,22 +37,41 @@
      }
    });
  });
+
+ function adminFilter() {
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("filter");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("moveRequest");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+	console.log("whats next" + td);
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
 </script>
 </head>
 <body>
   <div class="move_request_admin">
     <h1>Vetmove Admin</h1>
+    <input type="text" id="filter" onkeyup="adminFilter()" placeholder="Search by Move Request ID" title="Type in a request ID">
     <table id="moveRequest">
       <tr>
         <th>Move Request ID</th>
-        <th>Mover ID</th>
+        <th>Move Type</th>
+        <th>Company</th>
         <th>Origin</th>
         <th>Destination</th>
-        <!-- <th>Move Type</th> -->
-        <th>People</th>
+        <th># of People</th>
         <th>Square footage</th>
         <th>Bedrooms</th>
-        <th>Distance</th>
       </tr>
     </table>
   </div>
