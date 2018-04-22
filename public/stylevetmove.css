@@ -1,0 +1,320 @@
+html, body{
+  background: url(images/jet.png) no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'BenchNine', sans-serif;
+}
+
+
+.logo {
+  width: 50%;
+}
+
+.emblem-holder {
+	text-align: right;
+	width: 50%;
+	float: right;
+}
+
+.emblem {
+  width: 100%;
+  position: relative;
+}
+
+.row {
+  text-align: center;
+  margin: 0;
+  padding: 10px;
+  margin-top: 150px;
+  background-color: #4b5320;
+  opacity: .8;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.need {
+  text-align: left;
+  font-size: 1em;
+  color: white;
+  font-weight: lighter;
+  padding: 0;
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+
+#move {
+  text-align: left;
+}
+
+/* zipcode form */
+label {
+  /* font-size: 1.4em; */
+  padding: 0px;
+  margin: 0;
+  color: white;
+  font-size: 1em;
+  padding: 5px;
+  text-align: center;
+}
+
+.zip {
+  padding: 0;
+  margin: 0;
+  font-size: .7em;
+}
+
+#old-city {
+  padding: 0;
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 1em;
+  text-align: center;
+}
+
+#new-city {
+  padding: 0;
+  width: 150px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 1em;
+  text-align: center;
+}
+
+/* details form */
+.form2-holder {
+  padding: 0;
+  margin: 0;
+}
+
+.details {
+  font-size: 1em;
+  color: white;
+}
+
+#people {
+  border-radius: 5px;
+  width: 50px;
+  height: 25px;
+  text-align: center;
+}
+
+#bedrooms {
+  border-radius: 5px;
+  width: 120px;
+  height: 25px;
+  text-align: center;
+  font-size: .8em;
+}
+
+#sqft {
+  border-radius: 5px;
+  width: 80px;
+  height: 25px;
+  text-align: center;
+}
+
+/* date selection input */
+#datepicker {
+  color: #4b5320;
+  border-radius: 5px;
+  text-align: center;
+  width: 95px;
+  height: 25px;
+}
+
+/* date picker font */
+.datepicker {
+  border-radius: 5px;
+  position: relative;
+}
+
+/* submit button div */
+.button-holder {
+  text-align: center;
+}
+
+/* submit button */
+.submit {
+  width: 180px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: white;
+  color: #4b5320;
+  font-size: 1.2em;
+  border-width: lighter;
+  border-color: #4b5320;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  position: relative;
+}
+
+/* submit button styling (hovering) */
+.submit:hover {
+  background: black;
+  color: #4b5320;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* quotes on footer */
+q {
+  position: relative;
+  color: white;
+  font-size: 1em;
+}
+
+/* page footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  color: white;
+  background-color: #4b5320;
+  text-align: center;
+  left: 0;
+  right: 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  clear: both;
+}
+
+/* footer links */
+a {
+  padding: 3px;
+  text-decoration: underline;
+  font-size: 1.3em;
+}
+
+/*---Jaime's additions*/
+/*---Jaime's additions*/
+/*Jaime's additions*/
+
+
+header {
+  bottom: 0;
+  margin-bottom: 0;
+  /* border-style: ridge; */
+  border-color: black;
+  border-width:1px;
+  border-style:ridge;
+  /* width: 100%; */
+  color: white;
+  background-color: #4b5320;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the list items */
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+
+  /* make the list items unselectable */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(odd) {
+  background: #f9f9f9;
+}
+
+/* Darker background-color on hover */
+ul li:hover {
+  background: #ddd;
+}
+
+/* When clicked on, add a background color and strike out text */
+ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+
+/* Style the close button */
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Style the header */
+
+
+/* Style the "Add" button */
+.addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+
+#panel {
+  width: 40%;
+  float: right;
+  margin: 20px;
+  top: 10px;
+  left: 25%;
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #999;
+  text-align: left;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 15px;
+  border-style: ridge;
+  border-width: 5px;
+}
+#map {
+  height: 60%;
+  width: 50%;
+  margin: 20px;
+  border-style: ridge;
+  border-width: 5px;
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" type="text/css" href="style.css"/>
+<link rel="stylesheet" type="text/css" href="styletest.css"/>
 <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <head>
@@ -47,8 +47,7 @@
            $("#npeople").val(json.data[0].NumberOfPeople);
            $("#sqfoot").val(json.data[0].SquareFootage);
            $("#nroom").val(json.data[0].NumberOfRooms);
-           $("#move-type").val(json.data[0].MoveType);
-           $("#move-comp").val(json.data[0].MoverID);
+           $("#mover").val(json.data[0].MoverName);
            // $("#move-date").val(json.data)
 
              var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -89,8 +88,7 @@
   Number of People : <input id="npeople" size="2" readonly></input>
   Number of rooms : <input id="nroom" size="2" readonly></input>
   Square Footage : <input id="sqfoot" size="4" readonly></input>
-  Move Type : <input id="move-type" readonly></input><br>
-  Company Name: <input id="move-comp" readonly></input>
+  Moving Company : <input id="mover" size="6" readonly></input><br>
   <button onclick="printpage()">Print this page</button>
 
   <script>
