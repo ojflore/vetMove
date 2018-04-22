@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="review.css"/>
+  <link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet"/>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <title>Customer Review</title>
+</head>
+<body>
+  <div id="review-page">
+    <h1> Customer Review </h1></center>
+    <h2> Write a review about your Vetmove experience, we would love to hear about it!</h2></center>
+    <h3>Use the space provided to write about your experience with us. We appreciate the feedback!</h3>
+    <center>
+      <textarea id="review-comment" rows="15" cols="70"></textarea>
+    </center>
+    <h2>Give us a rating!</h2>
+    <div>
+      <form class="rating">
+        <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+        <label for="star5" >☆</label>
+        <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+        <label for="star4" >☆</label>
+        <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+        <label for="star3" >☆</label>
+        <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+        <label for="star2" >☆</label>
+        <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+        <label for="star1" >☆</label>
+        <div class="clear"></div>
+      </form>
+    </div>
+    <br>
+    <center>
+      <button class="submit" type="submit">Submit Review</button>
+    </center>
+  </div>
+
+  <div id="thank-you-page">
+    <div class="box">
+      <h1 class="thank-you">Thank You for using Vetmove! <h1>
+        <h2 class="thank-you-ref">Your move request reference #: </h2><br>
+        <center>
+          <input id="move-request-id" readonly></input><br>
+          <address class="contact">
+            Vetmove Customer Service: <br>
+            Phone: (240) 344-9447
+          </address>
+        </center>
+      </div>
+    </div>
+
+    <script>
+    $(function(){
+      $("#thank-you-page").hide();
+
+      $(".submit").click(function(){
+        $("#review-page").hide();
+        $("#thank-you-page").show();
+      })
+    });
+
+    $(function() {
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var moverequestid = url.searchParams.get("id");
+      console.log("jquery loaded!");
+      // var moverequestid = 1;
+      $.ajax({
+        type: "GET",
+        // url: "moverequest?id=1", + moverequestid,
+        url: "allmoverequest",
+        success: function(json) {
+          console.log(JSON.stringify(json));
+          var results = json.data;
+          for (var i = 0; i < results.length; i++) {
+            var body = $(document.body);
+            $("#move-request-id").val(results[i].MoveRequestID);
+            console.log(results[i].MoveRequestID || ""); //if null show empty string
+          }
+        },
+        error: function (textStatus, errorThrown) {
+          alert("Request failed!");
+        }
+      });
+    });
+  //
+  //
+  //   function setRating(rating) {
+  //       $.ajax({
+  //         type: "POST",
+  //         url: "set_rating",
+  //         data: JSON.stringify({
+  //           Rating: rating,
+  //           ID: moverequestid
+  //         }),
+  //         success: function(json) {
+  //           //console.log(JSON.stringify(json));
+  //           if (!json.success) {
+  //             alert(json.message);
+  //           }
+  //           else {
+  //             // showUsers();
+  //             console.log(JSON.stringify(json));
+  //             //window.location.replace("confirm.html?id=" + json.id);
+  //
+  //           }
+  //         },
+  //         error: function (jqXHR, textStatus, errorThrown) {
+  //           alert("Request failed!" + textStatus + " " + errorThrown + " " + jqXHR.status + " " + jqXHR.statusText + " " + jqXHR.responseText);
+  //         }
+  //       });
+  //   }
+  //
+  //   $(function() {
+  //   $("#star5").click(function() {
+  //     setRating(5);
+  //   });
+  //   $("#star4").click(function() {
+  //      setRating(4);
+  //   });
+  //   $("#star3").click(function() {
+  //     setRating(3);
+  //   });
+  //   $("#star2").click(function() {
+  //     setRating(2);
+  //   });
+  //   $("#star1").click(function() {
+  //     setRating(1);
+  //   });
+  // });
+
+
+  $(function() {
+    $(".submit").click(function() {
+      var reviewComment = $("#review-comment").val();
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var moverequestid = url.searchParams.get("id");
+      $.ajax({
+        type: "POST",
+        url: "set_comment",
+        data: JSON.stringify({
+          ReviewComment: reviewComment,
+          ID: moverequestid
+        }),
+        success: function(json) {
+          //console.log(JSON.stringify(json));
+          if (!json.success) {
+            alert(json.message);
+          }
+          else {
+            // showUsers();
+            console.log($("#review-comment").val());
+            console.log(JSON.stringify(json));
+            //window.location.replace("confirm.html?id=" + json.id);
+
+          }
+        },
+      });
+    });
+  });
+
+  </script>
+</body>
+</html>

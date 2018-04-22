@@ -27,9 +27,9 @@
        var results = json.data;
        for (var i = 0; i < results.length; i++) {
          var body = $(document.body);
-         $("#moveRequest").append("<tr><td>" + results[i].MoveRequestID + "</td><td>" + (results[i].MoveType || "") + "</td><td>" + (results[i].CompanyID || "") + "</td><td>" + results[i].FromZip + "</td><td>" + results[i].ToZip + "</td><td>" + results[i].NumberOfPeople + "</td><td>" + results[i].SquareFootage + "</td><td>" + results[i].NumberOfRooms + "</td>");
+         $("#moveRequest").append("<tr><td>" + results[i].MoveRequestID + "</td><td>" + (results[i].MoveType || "") + "</td><td>" + (results[i].CompanyID || "") + "</td><td>" + results[i].FromZip + "</td><td>" + results[i].ToZip + "</td><td>" + results[i].NumberOfPeople + "</td><td>" + results[i].NumberOfRooms + "</td><td>" + results[i].SquareFootage + "</td><td>" + results[i].Rating + "</td><td>" + results[i].ReviewComment + "</td>");
          //console.log(results[i].MoveType === null ? "" : results[i].MoveType); //if null show empty string
-         console.log(results[i].MoveType || ""); //if null show empty string
+         console.log(results[i].CompanyID || ""); //if null show empty string
        }
      },
      error: function (textStatus, errorThrown) {
@@ -46,7 +46,6 @@
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
-	console.log("whats next" + td);
     if (td) {
       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
@@ -70,8 +69,10 @@
         <th>Origin</th>
         <th>Destination</th>
         <th># of People</th>
-        <th>Square footage</th>
         <th>Bedrooms</th>
+        <th>Square footage</th>
+        <th>Rating</th>
+        <th>Review Comment</th>
       </tr>
     </table>
   </div>
