@@ -1,0 +1,146 @@
+/* review-page */
+html, body {
+ margin: 0;
+ padding: 0;
+ font-family: 'BenchNine', sans-serif;
+ background: url(images/flagbg.png) no-repeat fixed;
+ height: 100%;
+}
+
+h1 {
+  font-size: 4em;
+  margin-top: 0;
+  text-align: center;
+  color: white;
+}
+
+h2 {
+  font-size: 2em;
+  margin: 0;
+  text-align: center;
+  color: white;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin: 10px;
+  text-align: center;
+  color: white;
+}
+
+textarea {
+  text-align: left;
+  font-size: 1.1em;
+}
+
+input[type="text"] {
+   width: 1000px;
+   height: 150px;
+   text-align: left;
+   line-height: 300px;
+}
+
+.hide {
+  display: none;
+}
+
+.clear {
+  float: none;
+  clear: both;
+}
+
+.rating {
+    /* width: 675px; */
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    text-align: center;
+    position: relative;
+}
+
+.rating > label {
+    display: inline;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+    color: #000;
+}
+
+.rating > label:hover,
+.rating > label:hover ~ label,
+.rating > input.radio-btn:checked ~ label {
+    color: transparent;
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before,
+.rating > input.radio-btn:checked ~ label:before,
+.rating > input.radio-btn:checked ~ label:before {
+    content: "\2605";
+    position: absolute;
+    left: 0;
+    color: #FFD700;
+}
+
+/* submit button */
+.submit {
+  width: 150px;
+  height: 30px;
+  border-radius: 2px;
+  background-color: white;
+  color: black;
+  font-size: 1.1em;
+  border-width: lighter;
+  /* border-color: #4b5320; */
+  margin-top: 10px;
+  position: relative;
+}
+
+/* submit button styling (hovering) */
+.submit:hover {
+  color: red;
+  cursor: pointer;
+  /* font-weight: bold; */
+}
+
+
+
+/* THANK YOU PAGE */
+.thank-you-page {
+  /* height: 100%; */
+  /* width: 100%; */
+}
+
+.box {
+  top: 125px;
+  position: fixed;
+  width: 100%;
+  border: solid 1px black;
+  background-color: black;
+  opacity: .7;
+  /* margin: 0; */
+}
+
+.thank-you {
+  margin-top: 50px;
+  font-weight: lighter;
+  font-size: 5em;
+}
+
+.thank-you-ref {
+  font-weight: lighter;
+  font-size: 3.5em;
+}
+
+.contact {
+  font-size: 2em;
+  color: white;
+  margin-top: 50px;
+  /* margin-bottom: 50px; */
+  padding-bottom: 50px;:
+}
+
+#move-request-id {
+  font-size: 1.2em;
+  text-align: center;
+}
