@@ -10,15 +10,16 @@ h1 {
   color: #4b5320;
 }
 
+h2 {
+  margin-top: 1px;
+}
+
 .select-text {
   color: white;
   text-align: center;
-  margin-top: 70px;
+  margin-top: 30px;
 }
 
-.save {
-    border-radius: 50%;
-  }
 
 .ctn {
   border: solid 1px red;
@@ -28,13 +29,13 @@ h1 {
 }
 
 .logo {
-  width: 45%;
+  width: 35%;
   opacity: 0.8;
   /* border: solid 1px red; */
 }
 
 .emblem {
-  width: 45%;
+  width: 35%;
   float: right;
   opacity: 0.6;
   /* height: 75px; */
@@ -44,6 +45,7 @@ h1 {
 .landing {
   margin: 0;
   padding: 0;
+
 }
 
 .main-box {
@@ -53,7 +55,7 @@ h1 {
   width: 700px;
   height: 500px;
   background-color: white;
-  opacity: .8;
+  opacity: 1;
   /* margin-left: 325px; */
   margin-top: -50px;
   padding-bottom: 15px;
@@ -63,6 +65,7 @@ h1 {
 
 .org-text {
   font-size: 1.4em;
+  margin-left: 5000px;
 }
 
 .origin {
@@ -74,7 +77,9 @@ h1 {
   margin-bottom: 15px;
 }
 
-
+.header {
+  margin-bottom: 2px;
+}
 
 label {
   font-size: .8em;
@@ -83,8 +88,10 @@ label {
 }
 
 button {
-  margin: 10px;
-  border-radius: 50%
+margin-left: 60px;
+float: right;
+outline: none;
+
 }
 
 .reset {
@@ -96,12 +103,14 @@ button {
 }
 
 .save {
-  font-size: 13px;
+  font-size: 20px;
   /* width: 100px; */
   color: #4b5320;
   background-color: white;
-  border-radius: 50%;
-  float: right;
+  border-radius: 25%;
+  position: relative;
+  margin-top: 20px;
+  outline: none;
 }
 
 .submit:hover {
@@ -122,6 +131,7 @@ q {
 a {
   color: #4b5320;
   padding: 5px;
+  margin-left: 20px;
 }
 
 a:link, a:visited {
@@ -131,4 +141,8 @@ a:link, a:visited {
     text-align: center;
     text-decoration: none;
     display: inline-block;
+}
+.logo2 {
+  position: relative;
+  margin-left: 50px;
 }
