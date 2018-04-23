@@ -1,22 +1,22 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="moverstyle.css">
-<script
- src="https://code.jquery.com/jquery-3.3.1.min.js"
- integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
- crossorigin="anonymous"></script>
-<title>vetMove</title>
-<script>
-$(function() {
-  var url_string = window.location.href;
-  var url = new URL(url_string);
-  var moverequestid = url.searchParams.get("id");
-  console.log("moverequestid: " + moverequestid);
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=BenchNine|Crimson+Text|Oxygen" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="moverstyle.css">
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <title>vetMove</title>
+  <script>
+  $(function() {
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var moverequestid = url.searchParams.get("id");
+    console.log("moverequestid: " + moverequestid);
 
-  function setCompany(companyID) {
+    function setCompany(companyID) {
       $.ajax({
         type: "POST",
         url: "set_company",
@@ -41,95 +41,100 @@ $(function() {
           //   // showUsers();
           //   console.log(JSON.stringify(json));
           //   // window.location.replace("movers.html");
-            // window.location.replace("confirm.html?id=" + json.id);
+          // window.location.replace("confirm.html?id=" + json.id);
           // }
         },
         error: function (jqXHR, textStatus, errorThrown) {
           alert("Request failed!" + textStatus + " " + errorThrown + " " + jqXHR.status + " " + jqXHR.statusText + " " + jqXHR.responseText);
 
 
-       // "AJAXerrorHandler" : function(jqXHR, textStatus, errorThrown){
-       //         $('body').prepend('Error: <ul>'+
-       //             '<li>textStatus: '+textStatus+'</li>'+
-       //             '<li>errorThrown: '+errorThrown+'</li>'+
-       //             '<li>jqXHR.status: '+jqXHR.status+'</li>'+
-       //             '<li>jqXHR.statusText: '+jqXHR.statusText+'</li>'+
-       //             //'<li>jqXHR.responseText: '+jqXHR.responseText+'</li>'+
-       //             '</ul>');
-       //     },
+          // "AJAXerrorHandler" : function(jqXHR, textStatus, errorThrown){
+          //         $('body').prepend('Error: <ul>'+
+          //             '<li>textStatus: '+textStatus+'</li>'+
+          //             '<li>errorThrown: '+errorThrown+'</li>'+
+          //             '<li>jqXHR.status: '+jqXHR.status+'</li>'+
+          //             '<li>jqXHR.statusText: '+jqXHR.statusText+'</li>'+
+          //             //'<li>jqXHR.responseText: '+jqXHR.responseText+'</li>'+
+          //             '</ul>');
+          //     },
 
         }
       });
-  }
+    }
 
-  $("#two-men").click(function() {
-    setCompany(1);
+    $("#two-men").click(function() {
+      setCompany(1);
+    });
+    $("#mayflower").click(function() {
+      // var mayflower = $("#mayflower").val();
+      setCompany(2);
+    });
+    $("#united").click(function() {
+      // var united = $("#united").val();
+      setCompany(3);
+    });
+    $("#pgh").click(function() {
+      // var pgh = $("#pgh").val();
+      setCompany(4);
+    });
   });
-  $("#mayflower").click(function() {
-     // var mayflower = $("#mayflower").val();
-     setCompany(2);
-  });
-  $("#united").click(function() {
-    // var united = $("#united").val();
-    setCompany(3);
-  });
-  $("#pgh").click(function() {
-    // var pgh = $("#pgh").val();
-    setCompany(4);
-  });
-});
 
 </script>
 </head>
 <body>
-    <!-- <div class="ctn"> -->
+  <!-- <div class="ctn"> -->
   <div class="header">
     <img class="emblem" src="images/emblem.png"/>
     <img class=logo src="images/logo.png">
+    <h2 class="select-text">Select a Moving Company</h2>
   </div>
   <div class="landing">
     <div class="row justify-content-center">
       <center>
-       <!-- <div class="content"> -->
-         <table class="main-box">
-           <h1 class="select-text">Select a Moving Company</h1>
-           <tr>
-             <th>
-               <a class="org-text" href="https://twomenandatruck.com/" target="_blank" title="Go to Two Men and a Truck">Two Men and a Truck</a>
-             </th>
-             <th>
-               <button type="button" id="two-men" class="save" value="1">Select</button><br>
-             </th>
-             <br>
-           </tr>
-           <tr>
-             <th>
+        <!-- <div class="content"> -->
+        <table class="main-box">
+
+          <tr>
+            <th class="left">
+              <a class="org-text" href="https://twomenandatruck.com/" target="_blank" title="Go to Two Men and a Truck">Two Men and a Truck</a>
+            </th>
+            <th>
+              <img class=logo2 src="twomenand.gif">
+              <button type="button" id="two-men" class="save" value="1">Select</button><br>
+            </th>
+            <br>
+          </tr>
+          <tr>
+            <th class="left">
               <a class="org-text" href="https://www.mayflower.com/" target="_blank" title="Go to Mayflower Transit">Mayflower Transit</a>
-             </th>
-             <th>
-               <button type="button" id="mayflower" class="save" value="2">Select</button><br>
-             </th>
-             <br>
-           </tr>
-           <tr>
-             <th>
-               <a class="org-text" href="https://www.unitedvanlines.com/" target="_blank" title="Go to United Van Lines">United Van Lines</a>
-             </th>
-             <th>
-               <button type="button" id="united" class="save" value="3">Select</button><br>
-             </th>
-           </tr>
-           <tr>
-             <th>
-               <a class="org-text" href="http://www.pghmovingco.com/contact.html" target="_blank" title="Go to Pgh Moving Company">Pgh Moving Company</a>
-             </th>
-             <th>
-               <button type="button" id="pgh" class="save" value="4">Select</button><br>
-             </th>
-           </tr>
-         </table>
-       </div>
-     </center>
-   </div>
-  </body>
+            </th>
+            <th>
+              <img class=logo2 src="may.gif">
+              <button type="button" id="mayflower" class="save" value="2">Select</button><br>
+            </th>
+            <br>
+          </tr>
+          <tr>
+            <th class="left">
+              <a class="org-text" href="https://www.unitedvanlines.com/" target="_blank" title="Go to United Van Lines">United Van Lines</a>
+            </th>
+            <th>
+              <img class=logo2 src="united.png">
+              <button type="button" id="united" class="save" value="3">Select</button><br>
+            </th>
+          </tr>
+          <tr>
+            <th class="left">
+              <a class="org-text" href="http://www.pghmovingco.com/contact.html" target="_blank" title="Go to Pgh Moving Company">Pgh Moving Company</a>
+            </th>
+            <th>
+              <img class=logo2 src="pghmove.jpg">
+              <button type="button" id="pgh" class="save" value="4">Select</button><br>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </center>
+  </div>
+</body>
 </html>
