@@ -156,9 +156,11 @@
             console.log($("#review-comment").val());
             console.log(JSON.stringify(json));
             //window.location.replace("confirm.html?id=" + json.id);
-
           }
         },
+        error: function (textStatus, errorThrown) {
+          alert("Request failed!");
+        }
       });
     });
   });
