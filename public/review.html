@@ -112,29 +112,32 @@
             alert("Request failed!" + textStatus + " " + errorThrown + " " + jqXHR.status + " " + jqXHR.statusText + " " + jqXHR.responseText);
           }
         });
-        $(function() {
-        $("#star5").click(function() {
-          console.log("hello world")
-          setRating(5);
-        });
-        $("#star4").click(function() {
-          console.log("hello world")
-           setRating(4);
-        });
-        $("#star3").click(function() {
-          console.log("hello world")
-          setRating(3);
-        });
-        $("#star2").click(function() {
-          console.log("hello world")
-          setRating(2);
-        });
-        $("#star1").click(function() {
-          console.log("hello world")
-          setRating(1);
-        });
-      });
     }
+
+    $(document).ready(function(){
+    $(function() {
+    $("#star5").click(function() {
+      console.log("hello world")
+      setRating(5);
+    });
+    $("#star4").click(function() {
+      console.log("hello world")
+       setRating(4);
+    });
+    $("#star3").click(function() {
+      console.log("hello world")
+      setRating(3);
+    });
+    $("#star2").click(function() {
+      console.log("hello world")
+      setRating(2);
+    });
+    $("#star1").click(function() {
+      console.log("hello world")
+      setRating(1);
+    });
+  });
+});
 
 
 
