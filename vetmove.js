@@ -33,6 +33,9 @@ http.createServer(function(req, res) {
     else if (path === "/set_comment") {
       setReviewComment(req, res);
     }
+    else if (path === "/set_rating") {
+      setRating(req, res);
+    }
     else {
       serveStaticFile(res, path);
     }
@@ -389,6 +392,7 @@ function setReviewComment(req, res) {
     if (body.length > 1e6) {
       // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
       req.connection.destroy();
+      console.log("hello World");
     }
   });
   req.on("end", function () {
@@ -399,9 +403,11 @@ function setReviewComment(req, res) {
       if (err) {
         console.error("ERROR: cannot connect: " + e);
         return;
+        console.log("hello World");
       }
       conn.query("UPDATE MoveRequest SET ReviewComment=? WHERE ID=?", [injson.ReviewComment, injson.ID], function(err, rows, fields) {
         console.log("hello World");
+
         // build json result object
         var outjson = {};
         if (err) {
@@ -421,4 +427,49 @@ function setReviewComment(req, res) {
     });
   });
 }
+
+function setRating(req, res) {
+  var body = "";
+  req.on("data", function (data) {
+    body += data;
+    // 1e6 === 1 * Math.pow(10, 6) === 1 * 1000000 ~~~ 1MB
+    if (body.length > 1e6) {
+      // FLOOD ATTACK OR FAULTY CLIENT, NUKE REQUEST
+      req.connection.destroy();
+      console.log("hello World");
+    }
+  });
+  req.on("end", function () {
+    var injson = JSON.parse(body);
+    var conn = mysql.createConnection(credentials.connection);
+    // connect to database
+    conn.connect(function(err) {
+      if (err) {
+        console.error("ERROR: cannot connect: " + e);
+        return;
+        console.log("hello World");
+      }
+      conn.query("UPDATE MoveRequest SET Rating=? WHERE ID=?", [injson.Rating, injson.ID], function(err, rows, fields) {
+        console.log("hello World");
+
+        // build json result object
+        var outjson = {};
+        if (err) {
+          // query failed
+          outjson.success = false;
+          outjson.message = "Query failed: " + err;
+        }
+        else {
+          // query successful
+          outjson.success = true;
+          outjson.message = "Query successful!";
+        }
+        // return json object that contains the result of the query
+        sendResponse(req, res, outjson);
+      });
+      conn.end();
+    });
+  });
+}
+
 console.log("Server started on localhost: 3000; press Ctrl-C to terminate....");

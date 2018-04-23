@@ -86,51 +86,57 @@
         }
       });
     });
-  //
-  //
-  //   function setRating(rating) {
-  //       $.ajax({
-  //         type: "POST",
-  //         url: "set_rating",
-  //         data: JSON.stringify({
-  //           Rating: rating,
-  //           ID: moverequestid
-  //         }),
-  //         success: function(json) {
-  //           //console.log(JSON.stringify(json));
-  //           if (!json.success) {
-  //             alert(json.message);
-  //           }
-  //           else {
-  //             // showUsers();
-  //             console.log(JSON.stringify(json));
-  //             //window.location.replace("confirm.html?id=" + json.id);
-  //
-  //           }
-  //         },
-  //         error: function (jqXHR, textStatus, errorThrown) {
-  //           alert("Request failed!" + textStatus + " " + errorThrown + " " + jqXHR.status + " " + jqXHR.statusText + " " + jqXHR.responseText);
-  //         }
-  //       });
-  //   }
-  //
-  //   $(function() {
-  //   $("#star5").click(function() {
-  //     setRating(5);
-  //   });
-  //   $("#star4").click(function() {
-  //      setRating(4);
-  //   });
-  //   $("#star3").click(function() {
-  //     setRating(3);
-  //   });
-  //   $("#star2").click(function() {
-  //     setRating(2);
-  //   });
-  //   $("#star1").click(function() {
-  //     setRating(1);
-  //   });
-  // });
+
+
+    function setRating(rating) {
+        $.ajax({
+          type: "POST",
+          url: "set_rating",
+          data: JSON.stringify({
+            Rating: rating,
+            // ID: moverequestid
+          }),
+          success: function(json) {
+            //console.log(JSON.stringify(json));
+            if (!json.success) {
+              alert(json.message);
+            }
+            else {
+              // showUsers();
+              console.log(JSON.stringify(json));
+              //window.location.replace("confirm.html?id=" + json.id);
+
+            }
+          },
+          error: function (jqXHR, textStatus, errorThrown) {
+            alert("Request failed!" + textStatus + " " + errorThrown + " " + jqXHR.status + " " + jqXHR.statusText + " " + jqXHR.responseText);
+          }
+        });
+        $(function() {
+        $("#star5").click(function() {
+          console.log("hello world")
+          setRating(5);
+        });
+        $("#star4").click(function() {
+          console.log("hello world")
+           setRating(4);
+        });
+        $("#star3").click(function() {
+          console.log("hello world")
+          setRating(3);
+        });
+        $("#star2").click(function() {
+          console.log("hello world")
+          setRating(2);
+        });
+        $("#star1").click(function() {
+          console.log("hello world")
+          setRating(1);
+        });
+      });
+    }
+
+
 
 
   $(function() {
